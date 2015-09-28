@@ -17,13 +17,11 @@ public class Bird{ //Mon petit oiseau :D
 	private Coordonnees coord; //centre
 	private Color color;
 	private int coeff;
-	private int nbCourbe;
 	
 	public Bird(Coordonnees coord, Color color) {
 		this.coord = coord;
 		this.color = color;
 		this.coeff = new Random().nextInt(20)+1;
-		this.nbCourbe = new Random().nextInt(3);
 	}
 	
 	public void drawBird(Graphics g){ //dessine l'oiseau
@@ -32,21 +30,12 @@ public class Bird{ //Mon petit oiseau :D
 	}
 	
 	public void deplace(){ //Déplace les x et y selon le temps (T), Parabole codé en dur à changer en aléatoire !
-		if(this.nbCourbe==0){
 		this.coord.setX(this.coeff*this.coord.getT()+250);
 		this.coord.setY(this.coord.getT()*this.coord.getT());
 		this.coord.setT(this.coord.getT()+0.1); // Varier le + pour faire varier la fréquence de point. >0
-		}
-		else if(this.nbCourbe==1){
-			this.coord.setX(this.coeff*Math.cos(this.coord.getT())+250);
-			this.coord.setY(this.coeff++*Math.sin(this.coord.getT())+250);
-			this.coord.setT(this.coord.getT()+0.05);
-		}
-		else if(this.nbCourbe==2){
-			this.coord.setX(this.coeff*this.coord.getT());
-			this.coord.setY(this.coeff*Math.sin(this.coord.getT())+250);
-			this.coord.setT(this.coord.getT()+0.1);
-		}
+		/*this.coord.setX(this.coeff*this.coord.getT()+250);
+		this.coord.setY((this.coord.getT()*this.coord.getT()));
+		this.coord.setT(this.coord.getT()+0.1); // Varier le + pour faire varier la fréquence de point. >0*/
 		this.liste.add(this.coord); //Permet d'ajouter la nouvelle coordonné à la liste
 		try {
 			Thread.sleep(10);
