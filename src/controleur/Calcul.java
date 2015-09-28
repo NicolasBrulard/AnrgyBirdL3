@@ -38,7 +38,7 @@ public class Calcul {
 	}
 	
 	public static boolean testContactObstacle(AngryBird bird){ //Reenvoi vrai si la distance avec le plus proche obstacle est inférieur à la somme des deux rayons
-		if(Calcul.calculDistance(bird.getBird().getCoord(), Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getC())< Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getDiametre()/2+Constantes.rayonBird){
+		if(Calcul.calculDistance(bird.getBird().getCoord(), Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getC())<= Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getDiametre()/2+Constantes.rayonBird){
 			Calcul.chercherObsProche(bird.getBird(),bird.getOb()).setColor(Color.BLUE);
 
 			return true;
