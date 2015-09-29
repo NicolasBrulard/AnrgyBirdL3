@@ -18,12 +18,16 @@ public class Bird{ //Mon petit oiseau :D
 	private Color color;
 	private int coeff;
 	private int nbCourbe;
+	private int coeffAlea; 
+	private boolean changement = true;
 	
 	public Bird(Coordonnees coord, Color color) {
 		this.coord = coord;
 		this.color = color;
-		this.coeff = new Random().nextInt(20)+1;
+		this.coeffAlea = 5;
+		this.coeff = new Random().nextInt(this.coeffAlea);
 		this.nbCourbe = new Random().nextInt(3);
+		this.changement = true;
 	}
 	
 	public void drawBird(Graphics g){ //dessine l'oiseau
@@ -32,6 +36,7 @@ public class Bird{ //Mon petit oiseau :D
 	}
 	
 	public void deplace(){ //Déplace les x et y selon le temps (T), Parabole codé en dur à changer en aléatoire !
+		this.changement(this.nbCourbe);
 		if(this.nbCourbe==0){
 		this.coord.setX(this.coeff*this.coord.getT()+250);
 		this.coord.setY(this.coord.getT()*this.coord.getT());
@@ -40,10 +45,9 @@ public class Bird{ //Mon petit oiseau :D
 		else if(this.nbCourbe==1){
 			this.coord.setX(this.coeff*Math.cos(this.coord.getT())+250);
 			this.coord.setY(this.coeff++*Math.sin(this.coord.getT())+250);
-			this.coord.setT(this.coord.getT()+0.05);
+			this.coord.setT(this.coord.getT()+0.04);
 		}
 		else if(this.nbCourbe==2){
-			this.coeff = new Random().nextInt(5)+5;
 			this.coord.setX(this.coeff*this.coord.getT());
 			this.coord.setY(this.coeff*Math.sin(this.coord.getT())+250);
 			this.coord.setT(this.coord.getT()+0.1);
@@ -58,6 +62,31 @@ public class Bird{ //Mon petit oiseau :D
 	
 	public void ajouteListe(Coordonnees c){
 		this.liste.add(c);
+	}
+	
+	public void changement(int c){
+		if(this.changement){
+			switch (c) {
+			case 0:
+				this.coeffAlea = 20;
+				this.coeff += 10;
+				break;
+				
+			case 1:
+				this.coeffAlea = 20;
+				this.coeff += 10;
+				break;
+				
+			case 2:
+				this.coeffAlea = 10;
+				this.coeff += 5;
+				break;
+
+			default:
+				break;
+			}
+			this.changement = false;
+		}
 	}
 	
 	
