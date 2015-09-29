@@ -43,6 +43,7 @@ public class Bird{ //Mon petit oiseau :D
 			this.coord.setT(this.coord.getT()+0.05);
 		}
 		else if(this.nbCourbe==2){
+			this.coeff = new Random().nextInt(5)+5;
 			this.coord.setX(this.coeff*this.coord.getT());
 			this.coord.setY(this.coeff*Math.sin(this.coord.getT())+250);
 			this.coord.setT(this.coord.getT()+0.1);
