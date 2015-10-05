@@ -33,7 +33,7 @@ public class Obstacle {
 		g.setColor(Color.red);
 		g.drawArc((int) this.c.getX()-diametre/4, (int) this.c.getY()-diametre/4, diametre/4, diametre/4, 0, 360);
 		g.drawArc((int) this.c.getX()-diametre/4+(2*diametre/6), (int) this.c.getY()-diametre/4, diametre/4, diametre/4, 0, 360);
-		g.drawArc((int) this.c.getX()-diametre/9, (int) this.c.getY()+(diametre/7),diametre/4, diametre/4, 0, 180);
+		g.drawArc((int) this.c.getX()-diametre/9, (int) this.c.getY()+(diametre/20),diametre/4, diametre/4, 0, -180);
 		System.out.println();
 	}
 	
