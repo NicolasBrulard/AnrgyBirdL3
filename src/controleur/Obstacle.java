@@ -30,7 +30,10 @@ public class Obstacle {
 	public void draw(Graphics g) { //Dessine l'obstacle
 		g.setColor(this.color);
 		g.drawArc((int) this.c.getX()-diametre/2,(int) this.c.getY()-diametre/2, diametre, diametre, 0, 360);
-		g.drawArc((int) this.c.getX()-diametre/4, (int) this.c.getY()-diametre/4, diametre/2, diametre/2, 0, 360);
+		g.setColor(Color.red);
+		g.drawArc((int) this.c.getX()-diametre/4, (int) this.c.getY()-diametre/4, diametre/4, diametre/4, 0, 360);
+		g.drawArc((int) this.c.getX()-diametre/4+(2*diametre/6), (int) this.c.getY()-diametre/4, diametre/4, diametre/4, 0, 360);
+		g.drawArc((int) this.c.getX()-diametre/9, (int) this.c.getY()+(diametre/7),diametre/4, diametre/4, 0, 180);
 		System.out.println();
 	}
 	
