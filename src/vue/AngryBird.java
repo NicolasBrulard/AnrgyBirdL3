@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -24,6 +25,7 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 
 	public AngryBird(FenetreContener fenetre) {
 		this.fenetre = fenetre;
+		this.setSize(new Dimension(this.fenetre.getWidth(),this.fenetre.getHeight()));
 		fenetre.addMouseListener(this);
 	}
 
@@ -34,8 +36,8 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 		this.initObstacle(); //Création des obstacles
 		this.init = false;
 		}
-		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this)){ // Si l'oiseau ne touche pas l'obstacle le plus proche
-			g.clearRect(0, 0, Constantes.fenetreX, Constantes.fenetreY); //efface tout
+		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this,this.fenetre)){ // Si l'oiseau ne touche pas l'obstacle le plus proche
+			g.clearRect(0, 0, this.fenetre.getWidth(), this.fenetre.getHeight()); //efface tout
 		this.bird.ajouteListe(new Coordonnees(bird.getCoord().getX(),bird.getCoord().getY(), bird.getCoord().getT())); //Permet de mettre ne mémoire tous les centres de cercles pour "tracer les courbes"
 		this.bird.drawCentre(g); // Dessine tous les centre des positions de l'oiseau
 		this.bird.drawBird(g); //Dessine l'oiseau à la nouvelle position

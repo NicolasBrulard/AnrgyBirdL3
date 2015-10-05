@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import modele.Constantes;
 import modele.Coordonnees;
 import vue.AngryBird;
+import vue.FenetreContener;
 
 public class Calcul {
 	
@@ -46,9 +47,9 @@ public class Calcul {
 		return false;
 	}
 	
-	public static boolean testContactFenetre(AngryBird bird){
+	public static boolean testContactFenetre(AngryBird bird, FenetreContener fenetre){
 		
-		if((bird.getBird().getCoord().getX()+Constantes.rayonBird>=Constantes.fenetreX-Constantes.decalageFenetreXDroite || bird.getBird().getCoord().getY()+Constantes.rayonBird*2>=Constantes.fenetreY-Constantes.decalageFenetreYBas) && bird.getBird().getCoord().getX()>=200){ //dernier if moche
+		if((bird.getBird().getCoord().getX()+Constantes.rayonBird>=fenetre.getWidth()-Constantes.decalageFenetreXDroite || bird.getBird().getCoord().getY()+Constantes.rayonBird*2>=fenetre.getHeight()-Constantes.decalageFenetreYBas) && bird.getBird().getCoord().getX()>=200){ //dernier if moche
 			return true;
 		}
 		return false;
