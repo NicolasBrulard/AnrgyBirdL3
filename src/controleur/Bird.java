@@ -9,6 +9,7 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
+import vue.FenetreContener;
 import modele.Constantes;
 import modele.Coordonnees;
 
@@ -20,14 +21,16 @@ public class Bird{ //Mon petit oiseau :D
 	private int nbCourbe;
 	private int coeffAlea; 
 	private boolean changement = true;
+	private FenetreContener fenetre;
 	
-	public Bird(Coordonnees coord, Color color) {
+	public Bird(Coordonnees coord, Color color, FenetreContener fenetre) {
 		this.coord = coord;
 		this.color = color;
 		this.coeffAlea = 5;
 		this.coeff = new Random().nextInt(this.coeffAlea);
 		this.nbCourbe = new Random().nextInt(3);
 		this.changement = true;
+		this.fenetre = fenetre;
 	}
 	
 	public void drawBird(Graphics g){ //dessine l'oiseau
@@ -38,18 +41,18 @@ public class Bird{ //Mon petit oiseau :D
 	public void deplace(){ //Déplace les x et y selon le temps (T), Parabole codé en dur à changer en aléatoire !
 		this.changement(this.nbCourbe);
 		if(this.nbCourbe==0){
-		this.coord.setX(this.coeff*this.coord.getT()+250);
+		this.coord.setX(this.coeff*this.coord.getT()+this.fenetre.getWidth()/2);
 		this.coord.setY(this.coord.getT()*this.coord.getT());
 		this.coord.setT(this.coord.getT()+0.1); // Varier le + pour faire varier la fréquence de point. >0
 		}
 		else if(this.nbCourbe==1){
-			this.coord.setX(this.coeff*Math.cos(this.coord.getT())+250);
-			this.coord.setY(this.coeff++*Math.sin(this.coord.getT())+250);
-			this.coord.setT(this.coord.getT()+0.04);
+			this.coord.setX((this.coeff*Math.cos(this.coord.getT())+this.fenetre.getWidth()/2)/2);
+			this.coord.setY((this.coeff++*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2)/2);
+			this.coord.setT(this.coord.getT()+0.02);
 		}
 		else if(this.nbCourbe==2){
 			this.coord.setX(this.coeff*this.coord.getT());
-			this.coord.setY(this.coeff*Math.sin(this.coord.getT())+250);
+			this.coord.setY(this.coeff*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2);
 			this.coord.setT(this.coord.getT()+0.1);
 		}
 		this.liste.add(this.coord); //Permet d'ajouter la nouvelle coordonné à la liste
@@ -68,7 +71,7 @@ public class Bird{ //Mon petit oiseau :D
 		if(this.changement){
 			switch (c) {
 			case 0:
-				this.coeffAlea = 20;
+				this.coeffAlea = 40;
 				this.coeff += 10;
 				break;
 				

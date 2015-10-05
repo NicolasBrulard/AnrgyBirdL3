@@ -66,12 +66,12 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 		
 	public void initObstacle(){ //Permet d'initialiser les obstacles
 		for(int i = 0; i<Constantes.nbOb;i++){
-			this.ob.add(new Obstacle(new Coordonnees(400, i*50+50,0),Color.GREEN)); // Coord à peu près en dur
+			this.ob.add(new Obstacle(new Coordonnees(this.fenetre.getWidth()-100, i*50+50,0),Color.GREEN)); // Coord à peu près en dur
 		}
 	}
 	
 	public void initBird(){ //Permet d'initialiser l'oiseau
-		this.bird = new Bird(new Coordonnees(4.7,497.29,-22.3), Color.RED); //coord en dur à changer !!
+		this.bird = new Bird(new Coordonnees(4.7,497.29,-22.3), Color.RED,this.fenetre); //coord en dur à changer !!
 	}
 	
 	public Bird getBird() {
