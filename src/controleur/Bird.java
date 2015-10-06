@@ -28,7 +28,7 @@ public class Bird{ //Mon petit oiseau :D
 		this.color = color;
 		this.coeffAlea = 5;
 		this.coeff = new Random().nextInt(this.coeffAlea);
-		this.nbCourbe = new Random().nextInt(3);
+		this.nbCourbe = 3;
 		this.changement = true;
 		this.fenetre = fenetre;
 	}
@@ -53,6 +53,11 @@ public class Bird{ //Mon petit oiseau :D
 		else if(this.nbCourbe==2){
 			this.coord.setX(this.coeff*this.coord.getT());
 			this.coord.setY(this.coeff*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2);
+			this.coord.setT(this.coord.getT()+0.1);
+		}
+		else if(this.nbCourbe==3){
+			this.coord.setX(50*this.coeff*Math.cos(6*this.coord.getT())*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2);
+			this.coord.setY(50*this.coeff*Math.cos(6*this.coord.getT())*Math.cos(this.coord.getT())+this.fenetre.getWidth()/2);
 			this.coord.setT(this.coord.getT()+0.1);
 		}
 		this.liste.add(this.coord); //Permet d'ajouter la nouvelle coordonné à la liste
