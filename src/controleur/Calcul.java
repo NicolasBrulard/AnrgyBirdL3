@@ -55,6 +55,10 @@ public class Calcul {
 		return false;
 	}
 	
+	public static boolean testTemps(double d){
+		return d==500;
+	}
+	
 /*public static boolean testContactFenetre(AngryBird bird){
 		
 		if(Calcul.calculDistance(bird.getBird().getCoord(), new Coordonnees(bird.getBird().getCoord().getX(), Constantes.fenetreY, 0))<Constantes.rayonBird){

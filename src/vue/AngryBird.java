@@ -36,7 +36,7 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 		this.initObstacle(); //Création des obstacles
 		this.init = false;
 		}
-		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this,this.fenetre)){ // Si l'oiseau ne touche pas l'obstacle le plus proche
+		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this,this.fenetre) && !Calcul.testTemps(bird.getCoord().getT())){ // Si l'oiseau ne touche pas l'obstacle le plus proche
 			g.clearRect(0, 0, this.fenetre.getWidth(), this.fenetre.getHeight()); //efface tout
 		this.bird.ajouteListe(new Coordonnees(bird.getCoord().getX(),bird.getCoord().getY(), bird.getCoord().getT())); //Permet de mettre ne mémoire tous les centres de cercles pour "tracer les courbes"
 		this.bird.drawCentre(g); // Dessine tous les centre des positions de l'oiseau
