@@ -20,7 +20,7 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 	private FenetreContener fenetre; //Fenetre Qui contient le jeu
 	private ArrayList<Obstacle> ob = new ArrayList<>(); // Liste les obstacle du jeu
 	private Bird bird; // Mon petit oiseau :D
-	boolean init = true; // Boolean qui me sert à initialisé une fois certains élément
+	boolean init = true; // Boolean qui me sert Ã  initialiser une fois certains Ã©lÃ©ment
 	
 
 	public AngryBird(FenetreContener fenetre) {
@@ -32,16 +32,17 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 	@Override
 	public void paint(Graphics g) {
 		if(this.init){
-		this.initBird(); // Création de l'oiseau
-		this.initObstacle(); //Création des obstacles
+		this.initBird(); // Crï¿½ation de l'oiseau
+		this.initObstacle(); //Crï¿½ation des obstacles
 		this.init = false;
 		}
 		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this,this.fenetre) && !Calcul.testTemps(bird.getCoord().getT())){ // Si l'oiseau ne touche pas l'obstacle le plus proche
 			g.clearRect(0, 0, this.fenetre.getWidth(), this.fenetre.getHeight()); //efface tout
-		this.bird.ajouteListe(new Coordonnees(bird.getCoord().getX(),bird.getCoord().getY(), bird.getCoord().getT())); //Permet de mettre ne mémoire tous les centres de cercles pour "tracer les courbes"
+		this.bird.ajouteListe(new Coordonnees(bird.getCoord().getX(),bird.getCoord().getY(), bird.getCoord().getT())); //Permet de mettre ne mï¿½moire tous les centres de cercles pour "tracer les courbes"
 		this.bird.drawCentre(g); // Dessine tous les centre des positions de l'oiseau
-		this.bird.drawBird(g); //Dessine l'oiseau à la nouvelle position
-		this.bird.deplace(); // Calcul les nouvelles coordonnées de l'oiseau
+		this.bird.drawBird(g); //Dessine l'oiseau ï¿½ la nouvelle position
+		this.bird.drawBec(g); //Dessine le bec de l'oiseau
+		this.bird.deplace(); // Calcul les nouvelles coordonnï¿½es de l'oiseau
 		/*try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -66,12 +67,12 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 		
 	public void initObstacle(){ //Permet d'initialiser les obstacles
 		for(int i = 0; i<Constantes.nbOb;i++){
-			this.ob.add(new Obstacle(new Coordonnees(this.fenetre.getWidth()-100, i*50+50,0),Color.GREEN)); // Coord à peu près en dur
+			this.ob.add(new Obstacle(new Coordonnees(this.fenetre.getWidth()-100, i*50+50,0),Color.GREEN)); // Coord ï¿½ peu prï¿½s en dur
 		}
 	}
 	
 	public void initBird(){ //Permet d'initialiser l'oiseau
-		this.bird = new Bird(new Coordonnees(4.7,497.29,-22.3), Color.RED,this.fenetre); //coord en dur à changer !!
+		this.bird = new Bird(new Coordonnees(4.7,497.29,-22.3), Color.RED,this.fenetre); //coord en dur ï¿½ changer !!
 	}
 	
 	public Bird getBird() {

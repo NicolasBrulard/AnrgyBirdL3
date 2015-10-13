@@ -145,6 +145,9 @@ public class Bird{ //Mon petit oiseau :D
 		default:
 			break;
 		}
+		//int xPoly[] = {(int) this.getCoord().getX(),(int) this.getCoord().getX(),x};
+		//int yPoly[] = {(int)this.getCoord().getY()-20,(int)this.getCoord().getY()+20,y};
 		g.drawLine((int) this.getCoord().getX(),(int)this.getCoord().getY(),(int) x, (int) y);
+		//g.drawPolygon(xPoly, yPoly, 3);
 	}
 }
