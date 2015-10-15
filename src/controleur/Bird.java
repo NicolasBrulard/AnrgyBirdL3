@@ -28,7 +28,7 @@ public class Bird{ //Mon petit oiseau :D
 		this.color = color;
 		this.coeffAlea = 5;
 		this.coeff = new Random().nextInt(this.coeffAlea);
-		this.nbCourbe = new Random().nextInt(3);
+		this.nbCourbe = 3;
 		this.changement = true;
 		this.fenetre = fenetre;
 	}
@@ -56,9 +56,9 @@ public class Bird{ //Mon petit oiseau :D
 			this.coord.setT(this.coord.getT()+0.1);
 		}
 		else if(this.nbCourbe==3){
-			this.coord.setX(50*this.coeff*Math.cos(5*this.coord.getT())*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2);
-			this.coord.setY(50*this.coeff*Math.cos(5*this.coord.getT())*Math.cos(this.coord.getT())+this.fenetre.getWidth()/2);
-			this.coord.setT(this.coord.getT()+0.1);
+			this.coord.setX(7*this.coeff*Math.cos(5*this.coord.getT())*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2);
+			this.coord.setY(7*this.coeff*Math.cos(5*this.coord.getT())*Math.cos(this.coord.getT())+this.fenetre.getWidth()/2);
+			this.coord.setT(this.coord.getT()+0.01);
 		}
 		this.liste.add(this.coord); //Permet d'ajouter la nouvelle coordonn� � la liste
 		try {
@@ -89,7 +89,10 @@ public class Bird{ //Mon petit oiseau :D
 				this.coeffAlea = 10;
 				this.coeff += 5;
 				break;
-
+			case 3:
+				this.coeffAlea = 10;
+				this.coeff += 5;
+				break;
 			default:
 				break;
 			}
