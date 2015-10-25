@@ -22,13 +22,14 @@ public class Bird{ //Mon petit oiseau :D
 	private int coeffAlea; 
 	private boolean changement = true;
 	private FenetreContener fenetre;
+	private int temp = 10;
 	
 	public Bird(Coordonnees coord, Color color, FenetreContener fenetre) {
 		this.coord = coord;
 		this.color = color;
 		this.coeffAlea = 5;
 		this.coeff = new Random().nextInt(this.coeffAlea);
-		this.nbCourbe = 3;
+		this.nbCourbe =1;
 		this.changement = true;
 		this.fenetre = fenetre;
 	}
@@ -56,13 +57,37 @@ public class Bird{ //Mon petit oiseau :D
 			this.coord.setT(this.coord.getT()+0.1);
 		}
 		else if(this.nbCourbe==3){
-			this.coord.setX(7*this.coeff*Math.cos(5*this.coord.getT())*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2);
-			this.coord.setY(7*this.coeff*Math.cos(5*this.coord.getT())*Math.cos(this.coord.getT())+this.fenetre.getWidth()/2);
+			this.coord.setX(12*this.coeff*Math.cos(5*this.coord.getT())*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2);
+			this.coord.setY(12*this.coeff*Math.cos(5*this.coord.getT())*Math.cos(this.coord.getT())+this.fenetre.getWidth()/2);
 			this.coord.setT(this.coord.getT()+0.01);
 		}
+		/*if(this.nbCourbe==0){
+			this.coord.setX(this.coeff*this.coord.getT()+this.fenetre.getWidth()/2);
+			this.coord.setY(this.coord.getT()*this.coord.getT());
+			this.coord.setT(this.coord.getT()+0.1); // Varier le + pour faire varier la frï¿½quence de point. >0
+			this.temp = 10;
+			}
+			else if(this.nbCourbe==1){
+				this.coord.setX((this.coeff*Math.cos(this.coord.getT())+this.fenetre.getWidth()/2)/2);
+				this.coord.setY((this.coeff++*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2)/2);
+				this.coord.setT(this.coord.getT()+0.1);
+				this.temp = 20;
+			}
+			else if(this.nbCourbe==2){
+				this.coord.setX(this.coeff*this.coord.getT());
+				this.coord.setY(this.coeff*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2);
+				this.coord.setT(this.coord.getT()+0.1);
+				this.temp = 10;
+			}
+			else if(this.nbCourbe==3){
+				this.coord.setX(12*this.coeff*Math.cos(5*this.coord.getT())*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2);
+				this.coord.setY(12*this.coeff*Math.cos(5*this.coord.getT())*Math.cos(this.coord.getT())+this.fenetre.getWidth()/2);
+				this.coord.setT(this.coord.getT()+0.1);
+				this.temp = 100;
+			}*/
 		this.liste.add(this.coord); //Permet d'ajouter la nouvelle coordonnï¿½ ï¿½ la liste
 		try {
-			Thread.sleep(10);
+			Thread.sleep(temp);
 		} catch (Exception e) {
 
 		}
@@ -126,6 +151,7 @@ public class Bird{ //Mon petit oiseau :D
 		int y = 0;
 		switch (this.nbCourbe) {
 		case 0:
+			//int norme = V(x²+y²). Puis diviser x et y par ça. Et donc tjs même taille !
 			x = (int) (this.coeff + this.getCoord().getX());
 			y = (int) (2* this.coord.getT()+this.getCoord().getY());
 			break;

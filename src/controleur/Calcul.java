@@ -56,7 +56,7 @@ public class Calcul {
 	}
 	
 	public static boolean testTemps(double d){
-		return d==500;
+		return d>=50;
 	}
 	
 /*public static boolean testContactFenetre(AngryBird bird){
