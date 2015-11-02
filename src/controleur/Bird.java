@@ -42,9 +42,9 @@ public class Bird{ //Mon petit oiseau :D
 	public void deplace(){ //DÔøΩplace les x et y selon le temps (T), Parabole codÔøΩ en dur ÔøΩ changer en alÔøΩatoire !
 		this.changement(this.nbCourbe);
 		if(this.nbCourbe==0){
-		this.coord.setX(this.coeff*this.coord.getT()+this.fenetre.getWidth()/2);
-		this.coord.setY(this.coord.getT()*this.coord.getT());
-		this.coord.setT(this.coord.getT()+0.1); // Varier le + pour faire varier la frÔøΩquence de point. >0
+			this.coord.setX(this.coeff*this.coord.getT()+this.fenetre.getWidth()/2);
+			this.coord.setY(this.coord.getT()*this.coord.getT());
+			this.coord.setT(this.coord.getT()+0.1); // Varier le + pour faire varier la frÔøΩquence de point. >0
 		}
 		else if(this.nbCourbe==1){
 			this.coord.setX((this.coeff*Math.cos(this.coord.getT())+this.fenetre.getWidth()/2)/2);
@@ -149,34 +149,113 @@ public class Bird{ //Mon petit oiseau :D
 	public void drawBec(Graphics g){
 		int x = 0;
 		int y = 0;
+		
+		float X = (int) this.getCoord().getX();
+		float Y = (int) this.getCoord().getY();
+		
+		float a = 0;
+		float b = 0;
+		float Ax = 0;
+		float Bx = 0;
+		float Cx = 0;
+		
+		float l = Constantes.rayonBird*(2);
+		float delta = 0;
+		
+		int xl = 0;
+		int yl = 0;
+		
+		int alphaDegree = 90;
+		
+		int xc1 = 0;
+		int xc2 = 0;
+		int yc1 = 0;
+		int yc2 = 0;
+		
+		// d√©riv√© du d√©placement, c'est x et y repr√©sentent la tangente (et la vitesse?)
 		switch (this.nbCourbe) {
 		case 0:
-			//int norme = V(x≤+y≤). Puis diviser x et y par Áa. Et donc tjs mÍme taille !
-			x = (int) (this.coeff + this.getCoord().getX());
-			y = (int) (2* this.coord.getT()+this.getCoord().getY());
+
+			//x = (int) (this.coeff + this.getCoord().getX());
+			//y = (int) (2* this.coord.getT()+this.getCoord().getY());
+			x = (int) ((this.coeff + X));
+			y = (int) ((2* this.coord.getT()+Y));
+
 			break;
 			
 		case 1:
-			x = (int) (-this.coeff*Math.sin(this.coord.getT()) + this.getCoord().getX());
-			y = (int) (this.coeff*Math.cos(this.coord.getT()) +this.getCoord().getY());
+			x = (int) (-this.coeff*Math.sin(this.coord.getT()) + X);
+			y = (int) (this.coeff*Math.cos(this.coord.getT()) + Y);
 			break;
 			
 		case 2:
-			x = (int) (this.coeff + this.getCoord().getX());
-			y = (int) (this.coeff*Math.cos(this.coord.getT()) +this.getCoord().getY());
+			x = (int) (this.coeff + X);
+			y = (int) (this.coeff*Math.cos(this.coord.getT()) + Y);
 			break;
 			
 		case 3:
-			x = (int) (-this.coeff*Math.sin(this.coord.getT())*Math.cos(this.coord.getT()) + this.getCoord().getX());
-			y = (int) (this.coeff*Math.sin(this.coord.getT())*Math.sin(this.coord.getT()) +this.getCoord().getY());
+			x = (int) (-this.coeff*Math.sin(this.coord.getT())*Math.cos(this.coord.getT()) + X);
+			y = (int) (this.coeff*Math.sin(this.coord.getT())*Math.sin(this.coord.getT()) + Y);
 			break;
 
 		default:
 			break;
 		}
-		//int xPoly[] = {(int) this.getCoord().getX(),(int) this.getCoord().getX(),x};
-		//int yPoly[] = {(int)this.getCoord().getY()-20,(int)this.getCoord().getY()+20,y};
-		g.drawLine((int) this.getCoord().getX(),(int)this.getCoord().getY(),(int) x, (int) y);
-		//g.drawPolygon(xPoly, yPoly, 3);
+		
+		/* Explication rapide :
+		 * Y = aX + b
+		 * y = ay +b
+		 * a = (y-Y)/(X-x)
+		 * b = Y - aX
+		 * 
+		 * l^2 = (xx - X)^2 + (yy - Y)^2
+		 * 
+		 * A(xx)^2 + Bxx + C = 0
+		 * Avec :
+		 * A = 1+a^2
+		 * B = -2X + 2ab - 2aY
+		 * C = X^2 + b^2 - 2bY + Y^2 - l^2
+		 * 
+		 * xx = (-b+racine(delta))/2A)
+		 */
+		
+		a = (y - Y)/(x - X);
+		//System.out.println("a : " +a);
+		b = Y - a*X;
+		//System.out.println("b : " +b);
+		
+		Ax = 1 + a*a;
+		//System.out.println("A : " + Ax);
+		Bx = -2*X + 2*a*b - 2*a*Y;
+		//System.out.println("B : " + Bx);
+		Cx = X*X + b*b - 2*b*Y + Y*Y - l*l;
+		//System.out.println("C :" + Cx);
+		
+		delta = Bx*Bx - 4*Ax*Cx;
+		//System.out.println("delta : " + delta);
+		
+		if(X < x){
+			xl = (int) ((-Bx+Math.sqrt(delta))/(2*Ax));
+			yl = (int) ((a*(-Bx+Math.sqrt(delta))/(2*Ax)) + b);
+		}else{
+			xl = (int) ((-Bx-Math.sqrt(delta))/(2*Ax));
+			yl = (int) ((a*(-Bx-Math.sqrt(delta))/(2*Ax)) + b);
+		}
+		g.drawLine((int) X,(int) Y, xl, yl);
+		
+		//System.out.println("\nx : " + X + " y : " + Y);
+		//System.out.println("\nxl : " + (int) (-Bx+Math.sqrt(delta)/(2*Ax)) + " yl : " + (int) (a*(-Bx+Math.sqrt(delta)/(2*Ax)) + b));
+		
+		/*
+		xc1 = (int) X;//((X-xl)*Math.cos(alphaDegree));
+		yc1 = (int) Y+20;//((Y-yl)*Math.sin(alphaDegree));
+		xc2 = (int) X;
+		yc2 = (int) Y-20;
+		
+		int xPoly[] = {xc1, xc2, xl};
+		int yPoly[] = {yc1, yc2, yl};
+		
+		g.drawPolygon(xPoly, yPoly, 3);
+		*/
 	}
 }
