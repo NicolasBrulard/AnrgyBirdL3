@@ -191,8 +191,11 @@ public class Bird{ //Mon petit oiseau :D
 			break;
 			
 		case 3:
-			x = (int) (-this.coeff*Math.sin(this.coord.getT())*Math.cos(this.coord.getT()) + X);
-			y = (int) (this.coeff*Math.sin(this.coord.getT())*Math.sin(this.coord.getT()) + Y);
+			/*x = (int) (-this.coeff*Math.sin(this.coord.getT())*Math.cos(this.coord.getT()) + X);
+			y = (int) (this.coeff*Math.sin(this.coord.getT())*Math.sin(this.coord.getT()) + Y);*/
+			x = (int) (12*this.coeff*(3*Math.cos(6*X)-2*Math.cos(4*X)));
+			y = (int) (-12*this.coeff*(2*Math.sin(4*X)+3*Math.sin(6*X)));
+
 			break;
 
 		default:
