@@ -55,8 +55,20 @@ public class Calcul {
 		return false;
 	}
 	
-	public static boolean testTemps(double d){
-		return d>=50;
+	public static boolean testTemps(double d, int courbe){
+		switch (courbe) {
+		case 0:
+			return d>=127.7;
+		case 1:
+			return d>=7.7;
+		case 2:
+			return d>=127.7;
+		case 3:
+			return d>=-7.3;
+		default:
+			break;
+		}
+		return false;
 	}
 	
 /*public static boolean testContactFenetre(AngryBird bird){

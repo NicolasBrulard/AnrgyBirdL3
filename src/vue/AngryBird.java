@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JPanel;
 
@@ -21,12 +23,13 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 	private ArrayList<Obstacle> ob = new ArrayList<>(); // Liste les obstacle du jeu
 	private Bird bird; // Mon petit oiseau :D
 	boolean init = true; // Boolean qui me sert à initialiser une fois certains élément
+	//private Timer timer = createTimer();
 	
-
 	public AngryBird(FenetreContener fenetre) {
 		this.fenetre = fenetre;
 		this.setSize(new Dimension(this.fenetre.getWidth(),this.fenetre.getHeight()));
 		fenetre.addMouseListener(this);
+		//timer.start();
 	}
 
 	@Override
@@ -36,19 +39,21 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 		this.initObstacle(); //Cr�ation des obstacles
 		this.init = false;
 		}
-		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this,this.fenetre) && !Calcul.testTemps(bird.getCoord().getT())){ // Si l'oiseau ne touche pas l'obstacle le plus proche
+		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this,this.fenetre) && !Calcul.testTemps(bird.getCoord().getT(),bird.getNbCourbe())){ // Si l'oiseau ne touche pas l'obstacle le plus proche
 			g.clearRect(0, 0, this.fenetre.getWidth(), this.fenetre.getHeight()); //efface tout
 		this.bird.ajouteListe(new Coordonnees(bird.getCoord().getX(),bird.getCoord().getY(), bird.getCoord().getT())); //Permet de mettre ne m�moire tous les centres de cercles pour "tracer les courbes"
 		this.bird.drawCentre(g); // Dessine tous les centre des positions de l'oiseau
 		this.bird.drawBird(g); //Dessine l'oiseau � la nouvelle position
 		this.bird.drawBec(g); //Dessine le bec de l'oiseau
-		this.bird.deplace(); // Calcul les nouvelles coordonn�es de l'oiseau
-		/*try {
-			Thread.sleep(30);
+			
+				this.bird.deplace(); // Calcul les nouvelles coordonn�es de l'oiseau	
+	//	timer.scheduleAtFixedRate(task, 0, 1000);
+		try {
+			Thread.sleep(10);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		}
 		else{
 			try {

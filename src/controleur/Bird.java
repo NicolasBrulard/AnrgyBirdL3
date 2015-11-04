@@ -22,14 +22,14 @@ public class Bird{ //Mon petit oiseau :D
 	private int coeffAlea; 
 	private boolean changement = true;
 	private FenetreContener fenetre;
-	private int temp = 10;
+	private int temp = 5;
 	
 	public Bird(Coordonnees coord, Color color, FenetreContener fenetre) {
 		this.coord = coord;
 		this.color = color;
 		this.coeffAlea = 5;
 		this.coeff = new Random().nextInt(this.coeffAlea);
-		this.nbCourbe =0;
+		this.nbCourbe =new Random().nextInt(4);
 		this.changement = true;
 		this.fenetre = fenetre;
 	}
@@ -49,7 +49,7 @@ public class Bird{ //Mon petit oiseau :D
 		else if(this.nbCourbe==1){
 			this.coord.setX((this.coeff*Math.cos(this.coord.getT())+this.fenetre.getWidth()/2)/2);
 			this.coord.setY((this.coeff++*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2)/2);
-			this.coord.setT(this.coord.getT()+0.04);
+			this.coord.setT(this.coord.getT()+0.02);
 		}
 		else if(this.nbCourbe==2){
 			this.coord.setX(this.coeff*this.coord.getT());
@@ -86,11 +86,7 @@ public class Bird{ //Mon petit oiseau :D
 				this.temp = 100;
 			}*/
 		this.liste.add(this.coord); //Permet d'ajouter la nouvelle coordonn� � la liste
-		try {
-			Thread.sleep(temp);
-		} catch (Exception e) {
-
-		}
+		
 	}
 	
 	public void ajouteListe(Coordonnees c){
@@ -257,5 +253,9 @@ public class Bird{ //Mon petit oiseau :D
 		
 		g.drawPolygon(xPoly, yPoly, 3);
 		*/
+	}
+	
+	public int getNbCourbe() {
+		return nbCourbe;
 	}
 }
