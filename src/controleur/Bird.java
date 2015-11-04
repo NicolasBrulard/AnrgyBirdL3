@@ -30,6 +30,7 @@ public class Bird{ //Mon petit oiseau :D
 		this.coeffAlea = 5;
 		this.coeff = new Random().nextInt(this.coeffAlea);
 		this.nbCourbe =new Random().nextInt(4);
+		this.nbCourbe = new Random().nextInt(3);
 		this.changement = true;
 		this.fenetre = fenetre;
 	}

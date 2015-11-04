@@ -15,6 +15,7 @@ public class Main {
 				FenetreContener fenetre = new FenetreContener();
 				AngryBird angry = new AngryBird(fenetre);
 				fenetre.add(angry);
+				angry.go();
 			}
 		//});
 		

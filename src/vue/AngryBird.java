@@ -29,10 +29,12 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 		this.fenetre = fenetre;
 		this.setSize(new Dimension(this.fenetre.getWidth(),this.fenetre.getHeight()));
 		fenetre.addMouseListener(this);
+		
 		//timer.start();
 	}
+	
 
-	@Override
+
 	public void paint(Graphics g) {
 		if(this.init){
 		this.initBird(); // Cr�ation de l'oiseau
@@ -44,30 +46,27 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 		this.bird.ajouteListe(new Coordonnees(bird.getCoord().getX(),bird.getCoord().getY(), bird.getCoord().getT())); //Permet de mettre ne m�moire tous les centres de cercles pour "tracer les courbes"
 		this.bird.drawCentre(g); // Dessine tous les centre des positions de l'oiseau
 		this.bird.drawBird(g); //Dessine l'oiseau � la nouvelle position
-		this.bird.drawBec(g); //Dessine le bec de l'oiseau
-			
-				this.bird.deplace(); // Calcul les nouvelles coordonn�es de l'oiseau	
-	//	timer.scheduleAtFixedRate(task, 0, 1000);
-		try {
-			Thread.sleep(10);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.bird.drawBec(g); //Dessine le bec de l'oiseau	
+		this.bird.deplace(); // Calcul les nouvelles coordonn�es de l'oiseau	
+		//timer.scheduleAtFixedRate(task, 0, 1000);
 		}
 		else{
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			this.initBird();
 		}
 		for (Obstacle obstacle : this.ob) {
 			obstacle.draw(g); // Dessine les obstacles
 		}
-		repaint();
+		//repaint();
+	}
+	
+	public void go(){
+		TimerTask task = new TimerTask(){
+			public void run(){
+				repaint();
+			}
+		};
+		Timer timer = new Timer();
+		timer.schedule(task, 0, 10);
 	}
 		
 	public void initObstacle(){ //Permet d'initialiser les obstacles
