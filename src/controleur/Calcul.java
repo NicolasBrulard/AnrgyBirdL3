@@ -3,8 +3,6 @@ package controleur;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import com.sun.javafx.collections.SetAdapterChange;
-
 import modele.Constantes;
 import modele.Coordonnees;
 import vue.AngryBird;
@@ -60,7 +58,6 @@ public class Calcul {
 	public static boolean testContactObstacle(AngryBird bird){ //Reenvoi vrai si la distance avec le plus proche obstacle est inférieur à la somme des deux rayons
 		if(Calcul.calculDistance(bird.getBird().getCoord(), Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getC())< Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getDiametre()/2+Constantes.rayonBird){
 			Calcul.chercherObsProche(bird.getBird(),bird.getOb()).setColor(Color.BLUE);
-			Calcul.chercherObsProche(bird.getBird(),bird.getOb()).setAngle(180);
 
 			return true;
 		}		

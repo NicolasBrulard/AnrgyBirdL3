@@ -72,7 +72,7 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 			}
 		};
 		Timer timer = new Timer();
-		timer.schedule(task, 0, Constantes.temp);
+		timer.schedule(task, 0, 10);
 	}
 	
 	/**
