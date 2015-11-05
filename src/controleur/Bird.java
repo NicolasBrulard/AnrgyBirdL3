@@ -35,11 +35,18 @@ public class Bird{ //Mon petit oiseau :D
 		this.fenetre = fenetre;
 	}
 	
+	/**
+	 * This function draw the bird, according to the color in the constructor
+	 * @param Graphics
+	 */
 	public void drawBird(Graphics g){ //dessine l'oiseau
 		g.setColor(this.color);
         g.drawOval((int) this.coord.getX()-Constantes.rayonBird, (int) (this.coord.getY()-Constantes.rayonBird), Constantes.rayonBird*2, Constantes.rayonBird*2);
 	}
 	
+	/**
+	 * This function moves the bird point to point according to the values x and y
+	 */
 	public void deplace(){ //D�place les x et y selon le temps (T), Parabole cod� en dur � changer en al�atoire !
 		this.changement(this.nbCourbe);
 		if(this.nbCourbe==0){
@@ -90,10 +97,18 @@ public class Bird{ //Mon petit oiseau :D
 		
 	}
 	
+	/**
+	 * This function add the point the bird went on to the list of every point he went on
+	 * @param Coordinates
+	 */
 	public void ajouteListe(Coordonnees c){
 		this.liste.add(c);
 	}
 	
+	/**
+	 * Switch the value of an Integer 
+	 * @param c
+	 */
 	public void changement(int c){
 		if(this.changement){
 			switch (c) {
@@ -137,12 +152,20 @@ public class Bird{ //Mon petit oiseau :D
 		return liste;
 	}
 	
+	/**
+	 * This function
+	 * @param g
+	 */
 	public void drawCentre(Graphics g){
 		for (Coordonnees coord : liste) {
 			g.drawLine((int )coord.getX(),(int) coord.getY(), (int )coord.getX(), (int ) coord.getY());
 		}
 	}
 	
+	/**
+	 * This function draw the bird's mouth
+	 * @param g
+	 */
 	public void drawBec(Graphics g){
 		int x = 0;
 		int y = 0;

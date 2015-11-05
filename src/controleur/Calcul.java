@@ -10,6 +10,12 @@ import vue.FenetreContener;
 
 public class Calcul {
 	
+	/**
+	 * This function looks for obstacles from the frame
+	 * @param Bird
+	 * @param List of Obstacle
+	 * @return the nearest obstacle
+	 */
 	public static Obstacle chercherObsProche(Bird bird, ArrayList<Obstacle> ob){ //Permet de rechercher l'obstacle le plus proche
 		double distance = 999999;
 		Obstacle obProche = null;
@@ -31,6 +37,12 @@ public class Calcul {
 		
 	}*/
 	
+	/**
+	 * This function computes the distance between two coordinates.
+	 * @param Coordinates 1
+	 * @param Coordinates 2
+	 * @return the result of the operation
+	 */
 	public static double calculDistance(Coordonnees c1, Coordonnees c2){ //Calcul la distance entre les 2 centres. Racine[(xB-xA)²+(yB-Ya)²]
 		
 		
@@ -38,6 +50,11 @@ public class Calcul {
 		
 	}
 	
+	/**
+	 * This function tests if the Bird hits an obstacle
+	 * @param Bird
+	 * @return true or false, depending on if there's a collision
+	 */
 	public static boolean testContactObstacle(AngryBird bird){ //Reenvoi vrai si la distance avec le plus proche obstacle est inférieur à la somme des deux rayons
 		if(Calcul.calculDistance(bird.getBird().getCoord(), Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getC())< Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getDiametre()/2+Constantes.rayonBird){
 			Calcul.chercherObsProche(bird.getBird(),bird.getOb()).setColor(Color.BLUE);
@@ -47,6 +64,12 @@ public class Calcul {
 		return false;
 	}
 	
+	/**
+	 * This function tests if the Bird hits the top of the window or not
+	 * @param Bird
+	 * @param Window
+	 * @return true or false, depending on if there's a collision
+	 */
 	public static boolean testContactFenetre(AngryBird bird, FenetreContener fenetre){
 		
 		if((bird.getBird().getCoord().getX()+Constantes.rayonBird>=fenetre.getWidth()-Constantes.decalageFenetreXDroite || bird.getBird().getCoord().getY()+Constantes.rayonBird*2>=fenetre.getHeight()-Constantes.decalageFenetreYBas) && bird.getBird().getCoord().getX()>=200){ //dernier if moche
@@ -55,6 +78,12 @@ public class Calcul {
 		return false;
 	}
 	
+	/**
+	 * This function tests how long it will take to execute the move
+	 * @param d
+	 * @param courbe
+	 * @return the time
+	 */
 	public static boolean testTemps(double d, int courbe){
 		switch (courbe) {
 		case 0:

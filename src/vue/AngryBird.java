@@ -34,7 +34,10 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 	}
 	
 
-
+	/**
+	 * This function draw the bird and his mouth
+	 * @param Graphics
+	 */
 	public void paint(Graphics g) {
 		if(this.init){
 		this.initBird(); // Cr�ation de l'oiseau
@@ -59,6 +62,9 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 		//repaint();
 	}
 	
+	/**
+	 * This function launches the bird's movement
+	 */
 	public void go(){
 		TimerTask task = new TimerTask(){
 			public void run(){
@@ -68,13 +74,19 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 		Timer timer = new Timer();
 		timer.schedule(task, 0, 10);
 	}
-		
+	
+	/**
+	 * This function initiates the obstacles on the frame
+	 */
 	public void initObstacle(){ //Permet d'initialiser les obstacles
 		for(int i = 0; i<Constantes.nbOb;i++){
 			this.ob.add(new Obstacle(new Coordonnees(this.fenetre.getWidth()-100, i*50+50,0),Color.GREEN)); // Coord � peu pr�s en dur
 		}
 	}
 	
+	/**
+	 * This function initiates the bird on the frame
+	 */
 	public void initBird(){ //Permet d'initialiser l'oiseau
 		this.bird = new Bird(new Coordonnees(4.7,497.29,-22.3), Color.RED,this.fenetre); //coord en dur � changer !!
 	}

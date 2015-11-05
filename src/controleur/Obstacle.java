@@ -28,6 +28,10 @@ public class Obstacle {
 		this.color = color;
 	}
 	
+	/**
+	 * This function draws an obstacle.
+	 * @param g
+	 */
 	public void draw(Graphics g) { //Dessine l'obstacle
 		g.setColor(this.color);
 		g.drawArc((int) this.c.getX()-diametre/2,(int) this.c.getY()-diametre/2, diametre, diametre, 0, 360);
