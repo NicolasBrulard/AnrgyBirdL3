@@ -3,7 +3,6 @@ package controleur;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import com.sun.javafx.collections.SetAdapterChange;
 
 import modele.Constantes;
 import modele.Coordonnees;
@@ -22,7 +21,7 @@ public class Calcul {
 		double distance = 999999;
 		Obstacle obProche = null;
 		for (Obstacle obs : ob) { //Parcours les obstacles
-			if(distance>Calcul.calculDistance(bird.getCoord(), obs.getC())){ //Si la distance avec le nouvel obstacle est plus petite, alors il la récupère
+			if(distance>Calcul.calculDistance(bird.getCoord(), obs.getC())){ //Si la distance avec le nouvel obstacle est plus petite, alors il la rï¿½cupï¿½re
 				distance = Calcul.calculDistance(bird.getCoord(), obs.getC()); 
 				obProche = obs;
 			}
@@ -32,7 +31,7 @@ public class Calcul {
 		
 	}
 	
-	/*public static double calculDistance(Bird bird, Obstacle ob){ //Calcul la distance entre les 2 centres. Racine[(xB-xA)²+(yB-Ya)²]
+	/*public static double calculDistance(Bird bird, Obstacle ob){ //Calcul la distance entre les 2 centres. Racine[(xB-xA)ï¿½+(yB-Ya)ï¿½]
 		
 		
 		return Math.sqrt(Math.pow((ob.getC().getX()-bird.getCoord().getX()),2)+Math.pow((ob.getC().getY()-bird.getCoord().getY()),2));
@@ -45,7 +44,7 @@ public class Calcul {
 	 * @param Coordinates 2
 	 * @return the result of the operation
 	 */
-	public static double calculDistance(Coordonnees c1, Coordonnees c2){ //Calcul la distance entre les 2 centres. Racine[(xB-xA)²+(yB-Ya)²]
+	public static double calculDistance(Coordonnees c1, Coordonnees c2){ //Calcul la distance entre les 2 centres. Racine[(xB-xA)ï¿½+(yB-Ya)ï¿½]
 		
 		
 		return Math.sqrt(Math.pow((c2.getX()-c1.getX()),2)+Math.pow((c2.getY()-c1.getY()),2));
@@ -57,8 +56,8 @@ public class Calcul {
 	 * @param Bird
 	 * @return true or false, depending on if there's a collision
 	 */
-	public static boolean testContactObstacle(AngryBird bird){ //Reenvoi vrai si la distance avec le plus proche obstacle est inférieur à la somme des deux rayons
-		if(Calcul.calculDistance(bird.getBird().getCoord(), Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getC())< Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getDiametre()/2+Constantes.rayonBird){
+	public static boolean testContactObstacle(AngryBird bird){ //Reenvoi vrai si la distance avec le plus proche obstacle est infï¿½rieur ï¿½ la somme des deux rayons
+		if(Calcul.calculDistance(bird.getBird().getCoord(), Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getC())<= Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getDiametre()/2+Constantes.rayonBird){
 			Calcul.chercherObsProche(bird.getBird(),bird.getOb()).setColor(Color.BLUE);
 			Calcul.chercherObsProche(bird.getBird(),bird.getOb()).setAngle(180);
 

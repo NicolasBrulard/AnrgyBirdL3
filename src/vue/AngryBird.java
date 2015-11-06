@@ -98,6 +98,12 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 	public ArrayList<Obstacle> getOb() {
 		return ob;
 	}
+	public void setOb(ArrayList<Obstacle> ob) {
+		this.ob = ob;
+	}
+	public void setBird(Bird bird) {
+		this.bird = bird;
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

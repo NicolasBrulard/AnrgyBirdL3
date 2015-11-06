@@ -62,4 +62,7 @@ public class Obstacle {
 	public int getAngle() {
 		return angle;
 	}
+	public void setDiametre(int diametre) {
+		this.diametre = diametre;
+	}
 }
