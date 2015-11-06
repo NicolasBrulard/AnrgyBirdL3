@@ -16,7 +16,7 @@ import controleur.Obstacle;
 
 public class testCollisionObstacle {
 
-	@org.junit.Test
+	@Test
 	public void testCollisionObstacleInterieur(){
 		FenetreContener fe = new FenetreContener();
 		Bird ois = new Bird(new Coordonnees(100, 100, 0),null,fe);
@@ -29,7 +29,7 @@ public class testCollisionObstacle {
 		assertTrue(Calcul.testContactObstacle(angry));
 	}
 	
-	@org.junit.Test
+	@Test
 	public void testCollisionObstacleContact(){
 		FenetreContener fe = new FenetreContener();
 		Bird ois = new Bird(new Coordonnees(100, 100, 0),null,fe);
@@ -42,5 +42,19 @@ public class testCollisionObstacle {
 		angry.setOb(ListOb);
 		assertTrue(Calcul.testContactObstacle(angry));
 	}
+	@Test
+	public void testNoCollision(){
+		FenetreContener fe = new FenetreContener();
+		Bird ois = new Bird(new Coordonnees(100, 100, 0),null,fe);
+		Obstacle obs = new Obstacle(new Coordonnees(175,100,0),null);
+		obs.setDiametre(20);
+		ArrayList<Obstacle> ListOb = new ArrayList<Obstacle>();
+		ListOb.add(obs);
+		AngryBird angry = new AngryBird(fe);
+		angry.setBird(ois);
+		angry.setOb(ListOb);
+		assertFalse(Calcul.testContactObstacle(angry));
+	}
+	
 
 }
