@@ -101,6 +101,11 @@ public class Calcul {
 		}
 		return false;
 	}
+
+	public static boolean testSupperpositionObstacle(AngryBird angry) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 /*public static boolean testContactFenetre(AngryBird bird){
 		

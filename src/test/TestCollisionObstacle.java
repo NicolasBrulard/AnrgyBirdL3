@@ -14,7 +14,7 @@ import controleur.Bird;
 import controleur.Calcul;
 import controleur.Obstacle;
 
-public class testCollisionObstacle {
+public class TestCollisionObstacle {
 
 	@Test
 	public void testCollisionObstacleInterieur(){

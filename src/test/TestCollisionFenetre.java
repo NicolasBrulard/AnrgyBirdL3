@@ -13,7 +13,7 @@ import vue.FenetreContener;
 import controleur.Bird;
 import controleur.Calcul;
 
-public class testCollisionFenetre {
+public class TestCollisionFenetre {
 
 	@Test
 	public void testCollisionFenetreXContact() {
