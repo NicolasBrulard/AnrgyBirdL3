@@ -1,8 +1,8 @@
 package modele;
 
 public class Coordonnees {
-	private double x; //Les doubles sont plus pratiques à manipuler pour les calculs
-	private double y; // Donc attention à caster en int pour les méthodes de Graphics
+	private double x; //Les doubles sont plus pratiques a manipuler pour les calculs
+	private double y; // Donc attention a caster en int pour les methodes de Graphics
 	private double t;
 	
 	public Coordonnees(double x, double y,double t) {

@@ -178,6 +178,7 @@ public class Bird{ //Mon petit oiseau :D
 		
 		int xl = 0;
 		int yl = 0;
+
 		/*
 		int alphaDegree = 90;
 		
@@ -186,7 +187,11 @@ public class Bird{ //Mon petit oiseau :D
 		int yc1 = 0;
 		int yc2 = 0;
 		*/
+
 		// dérivé du déplacement, c'est x et y représentent la tangente (et la vitesse?) ==> oui et la vitesse si on le normalise pas
+
+		// dérivé du déplacement, c'est x et y représentent la tangente (et la vitesse?)
+
 		switch (this.nbCourbe) {
 		case 0:
 
