@@ -16,7 +16,7 @@ import controleur.Calcul;
 public class testCollisionFenetre {
 
 	@Test
-	public void testCollisionFenetreX() {
+	public void testCollisionFenetreXContact() {
 		FenetreContener fe = new FenetreContener();
 		Bird ois = new Bird(new Coordonnees(Constantes.fenetreX-1, Constantes.fenetreY/2, 0),null,fe);
 		AngryBird angry = new AngryBird(fe);
@@ -24,13 +24,31 @@ public class testCollisionFenetre {
 		assertTrue(Calcul.testContactFenetre(angry, fe));
 	}
 	@Test
-	public void testCollisionFenetreY() {
+	public void testCollisionFenetreX() {
+		FenetreContener fe = new FenetreContener();
+		Bird ois = new Bird(new Coordonnees(Constantes.fenetreX+10, Constantes.fenetreY/2, 0),null,fe);
+		AngryBird angry = new AngryBird(fe);
+		angry.setBird(ois);
+		assertTrue(Calcul.testContactFenetre(angry, fe));
+	}
+	
+	@Test
+	public void testCollisionFenetreYContact() {
 		FenetreContener fe = new FenetreContener();
 		Bird ois = new Bird(new Coordonnees(Constantes.fenetreX/2, Constantes.fenetreY-1, 0),null,fe);
 		AngryBird angry = new AngryBird(fe);
 		angry.setBird(ois);
 		assertTrue(Calcul.testContactFenetre(angry, fe));
 	}
+	@Test
+	public void testCollisionFenetreY() {
+		FenetreContener fe = new FenetreContener();
+		Bird ois = new Bird(new Coordonnees(Constantes.fenetreX/2, Constantes.fenetreY+10, 0),null,fe);
+		AngryBird angry = new AngryBird(fe);
+		angry.setBird(ois);
+		assertTrue(Calcul.testContactFenetre(angry, fe));
+	}
+	
 	@Test
 	public void testNoCollisionFenetre() {
 		FenetreContener fe = new FenetreContener();

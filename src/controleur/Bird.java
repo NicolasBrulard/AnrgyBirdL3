@@ -1,13 +1,9 @@
 package controleur;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Polygon;
 import java.util.ArrayList;
 import java.util.Random;
-
-import javax.swing.JPanel;
 
 import vue.FenetreContener;
 import modele.Constantes;
@@ -182,14 +178,14 @@ public class Bird{ //Mon petit oiseau :D
 		
 		int xl = 0;
 		int yl = 0;
-		
+		/*
 		int alphaDegree = 90;
 		
 		int xc1 = 0;
 		int xc2 = 0;
 		int yc1 = 0;
 		int yc2 = 0;
-		
+		*/
 		// dérivé du déplacement, c'est x et y représentent la tangente (et la vitesse?) ==> oui et la vitesse si on le normalise pas
 		switch (this.nbCourbe) {
 		case 0:
@@ -214,7 +210,7 @@ public class Bird{ //Mon petit oiseau :D
 		case 3:
 			/*x = (int) (-this.coeff*Math.sin(this.coord.getT())*Math.cos(this.coord.getT()) + X);
 			y = (int) (this.coeff*Math.sin(this.coord.getT())*Math.sin(this.coord.getT()) + Y);*/
-			x = (int) (12*this.coeff*(3*Math.cos(6*X)-2*Math.cos(4*X))); //soucis non r�solu ! voir avec nicolas !
+			x = (int) (12*this.coeff*(3*Math.cos(6*X)-2*Math.cos(4*X))); //soucis non r�solu ! voir avec nicolas !
 			y = (int) (-12*this.coeff*(2*Math.sin(4*X)+3*Math.sin(6*X)));
 
 			break;

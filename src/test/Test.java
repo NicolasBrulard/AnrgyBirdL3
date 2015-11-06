@@ -8,7 +8,6 @@ import modele.Coordonnees;
 import controleur.Bird;
 import controleur.Calcul;
 import controleur.Obstacle;
-import vue.AngryBird;
 import vue.FenetreContener;
 
 public class Test {

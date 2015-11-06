@@ -19,6 +19,10 @@ import modele.Coordonnees;
 
 public class AngryBird extends JPanel implements MouseListener{ //Classe principal
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private FenetreContener fenetre; //Fenetre Qui contient le jeu
 	private ArrayList<Obstacle> ob = new ArrayList<>(); // Liste les obstacle du jeu
 	private Bird bird; // Mon petit oiseau :D

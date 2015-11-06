@@ -1,5 +1,3 @@
-import javax.swing.SwingUtilities;
-
 import vue.AngryBird;
 import vue.FenetreContener;
 
