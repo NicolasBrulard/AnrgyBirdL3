@@ -22,7 +22,7 @@ public class Bird{ //Mon petit oiseau :D
 	public Bird(Coordonnees coord, Color color, FenetreContener fenetre) {
 		this.coord = coord;
 		this.color = color;
-		this.nbCourbe =new Random().nextInt(4);
+		this.nbCourbe = new Random().nextInt(4);
 		this.coeff = new Random().nextInt(this.coeffAlea);
 		this.changement = true;
 		this.fenetre = fenetre;

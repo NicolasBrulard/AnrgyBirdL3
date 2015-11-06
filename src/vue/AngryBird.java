@@ -3,6 +3,7 @@ package vue;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -27,14 +28,11 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 	private ArrayList<Obstacle> ob = new ArrayList<>(); // Liste les obstacle du jeu
 	private Bird bird; // Mon petit oiseau :D
 	boolean init = true; // Boolean qui me sert à initialiser une fois certains élément
-	//private Timer timer = createTimer();
 	
 	public AngryBird(FenetreContener fenetre) {
 		this.fenetre = fenetre;
 		this.setSize(new Dimension(this.fenetre.getWidth(),this.fenetre.getHeight()));
 		fenetre.addMouseListener(this);
-		
-		//timer.start();
 	}
 	
 
@@ -55,7 +53,14 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 		this.bird.drawBird(g); //Dessine l'oiseau a la nouvelle position
 		this.bird.drawBec(g); //Dessine le bec de l'oiseau	
 		this.bird.deplace(); // Calcul les nouvelles coordonnees de l'oiseau	
-		//timer.scheduleAtFixedRate(task, 0, 1000);
+		if(Calcul.testContactObstacle(this)){
+			try {
+				Thread.sleep(Constantes.tempsAttente);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		}
 		else{
 			this.initBird();
@@ -76,7 +81,7 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 			}
 		};
 		Timer timer = new Timer();
-		timer.schedule(task, 0, Constantes.temp);
+		timer.schedule(task, 0, Constantes.temps);
 	}
 	
 	

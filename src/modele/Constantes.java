@@ -16,5 +16,6 @@ public class Constantes {
 	
 	public static final int xBirdDebut = 25;
 	public static final int YBirdDebut = 475;
-	public static final int temp = 10;
+	public static final int temps = 10;
+	public static final long tempsAttente = 1000;
 }
