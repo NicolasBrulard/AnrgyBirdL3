@@ -10,10 +10,11 @@ public class Constantes {
 	public static final int decalageFenetreXDroite = 14;
 	
 	
-	public static final int nbOb = 8; //Nombre d'obstacle
+	public static final int nbOb = 3; //Nombre d'obstacle
 	
 	public static final int rayonBird = 20;
 	
 	public static final int xBirdDebut = 25;
 	public static final int YBirdDebut = 475;
+	public static final int temp = 10;
 }

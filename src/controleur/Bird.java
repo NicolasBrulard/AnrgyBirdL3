@@ -19,18 +19,15 @@ public class Bird{ //Mon petit oiseau :D
 	private Color color;
 	private int coeff;
 	private int nbCourbe;
-	private int coeffAlea; 
+	private int coeffAlea = 5; 
 	private boolean changement = true;
 	private FenetreContener fenetre;
-	private int temp = 5;
 	
 	public Bird(Coordonnees coord, Color color, FenetreContener fenetre) {
 		this.coord = coord;
 		this.color = color;
-		this.coeffAlea = 5;
-		this.coeff = new Random().nextInt(this.coeffAlea);
 		this.nbCourbe =new Random().nextInt(4);
-		this.nbCourbe = new Random().nextInt(3);
+		this.coeff = new Random().nextInt(this.coeffAlea);
 		this.changement = true;
 		this.fenetre = fenetre;
 	}
@@ -50,6 +47,7 @@ public class Bird{ //Mon petit oiseau :D
 	public void deplace(){ //D�place les x et y selon le temps (T), Parabole cod� en dur � changer en al�atoire !
 		this.changement(this.nbCourbe);
 		if(this.nbCourbe==0){
+			System.out.println(this.coeff);
 			this.coord.setX(this.coeff*this.coord.getT()+this.fenetre.getWidth()/2);
 			this.coord.setY(this.coord.getT()*this.coord.getT());
 			this.coord.setT(this.coord.getT()+0.1); // Varier le + pour faire varier la fr�quence de point. >0
@@ -65,8 +63,8 @@ public class Bird{ //Mon petit oiseau :D
 			this.coord.setT(this.coord.getT()+0.1);
 		}
 		else if(this.nbCourbe==3){
-			this.coord.setX(12*this.coeff*Math.cos(5*this.coord.getT())*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2);
-			this.coord.setY(12*this.coeff*Math.cos(5*this.coord.getT())*Math.cos(this.coord.getT())+this.fenetre.getWidth()/2);
+			this.coord.setX(12*this.coeff*Math.cos(this.coeff*this.coord.getT())*Math.sin(this.coord.getT())+this.fenetre.getWidth()/2);
+			this.coord.setY(12*this.coeff*Math.cos(this.coeff*this.coord.getT())*Math.cos(this.coord.getT())+this.fenetre.getWidth()/2);
 			this.coord.setT(this.coord.getT()+0.01);
 		}
 		/*if(this.nbCourbe==0){
@@ -113,22 +111,22 @@ public class Bird{ //Mon petit oiseau :D
 		if(this.changement){
 			switch (c) {
 			case 0:
-				this.coeffAlea = 40;
-				this.coeff += 10;
+				this.coeffAlea = 30;
+				this.coeff = new Random().nextInt(this.coeffAlea);
 				break;
 				
 			case 1:
 				this.coeffAlea = 20;
-				this.coeff += 10;
+				this.coeff = new Random().nextInt(this.coeffAlea);
 				break;
 				
 			case 2:
 				this.coeffAlea = 10;
-				this.coeff += 5;
+				this.coeff = new Random().nextInt(this.coeffAlea)+5;
 				break;
 			case 3:
 				this.coeffAlea = 10;
-				this.coeff += 5;
+				this.coeff = new Random().nextInt(this.coeffAlea)+2;
 				break;
 			default:
 				break;
@@ -192,7 +190,7 @@ public class Bird{ //Mon petit oiseau :D
 		int yc1 = 0;
 		int yc2 = 0;
 		
-		// dérivé du déplacement, c'est x et y représentent la tangente (et la vitesse?)
+		// dérivé du déplacement, c'est x et y représentent la tangente (et la vitesse?) ==> oui et la vitesse si on le normalise pas
 		switch (this.nbCourbe) {
 		case 0:
 
@@ -216,7 +214,7 @@ public class Bird{ //Mon petit oiseau :D
 		case 3:
 			/*x = (int) (-this.coeff*Math.sin(this.coord.getT())*Math.cos(this.coord.getT()) + X);
 			y = (int) (this.coeff*Math.sin(this.coord.getT())*Math.sin(this.coord.getT()) + Y);*/
-			x = (int) (12*this.coeff*(3*Math.cos(6*X)-2*Math.cos(4*X)));
+			x = (int) (12*this.coeff*(3*Math.cos(6*X)-2*Math.cos(4*X))); //soucis non r�solu ! voir avec nicolas !
 			y = (int) (-12*this.coeff*(2*Math.sin(4*X)+3*Math.sin(6*X)));
 
 			break;
