@@ -264,7 +264,6 @@ public class Bird{ //Mon petit oiseau :D
 			yl = (int) ((a*(-Bx-Math.sqrt(delta))/(2*Ax)) + b);
 		}
 		g.drawLine((int) X,(int) Y, xl, yl);
-		
 		//System.out.println("\nx : " + X + " y : " + Y);
 		//System.out.println("\nxl : " + (int) (-Bx+Math.sqrt(delta)/(2*Ax)) + " yl : " + (int) (a*(-Bx+Math.sqrt(delta)/(2*Ax)) + b));
 		
