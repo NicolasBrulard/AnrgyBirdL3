@@ -58,7 +58,7 @@ public class Calcul {
 	}
 	
 	/**
-	 * This function tests if the Bird hits an obstacle
+	 * This function tests if the Bird hits an obstacle shaped as a circle.
 	 * @param Bird
 	 * @return true or false, depending on if there's a collision
 	 */
@@ -72,6 +72,21 @@ public class Calcul {
 
 			return true;
 		}		
+		return false;
+	}
+	
+	/**
+	 * This function tests if the Bird hits an obstacle shaped as a rectangle.
+	 * @param Bird
+	 * @return true or false, depending on if there's a collision.
+	 */
+	
+	public static boolean testContactObstacleRectangle(AngryBird bird) {
+		if(Calcul.calculDistance(bird.getBird().getCoord(), Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getC()) < Calcul.chercherObsProche(bird.getBird(),bird.getOb()).getC().getX()) {
+			Calcul.chercherObsProche(bird.getBird(), bird.getOb()).setColor(Color.BLUE);
+			Calcul.chercherObsProche(bird.getBird(), bird.getOb()).setAngle(180);
+			return true;
+		}
 		return false;
 	}
 	
