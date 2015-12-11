@@ -42,11 +42,7 @@ public class TestCollisionObstacle {
 		angry.setOb(ListOb);
 		assertTrue(Calcul.testContactObstacle(angry));
 	}
-<<<<<<< HEAD
 	*/
-=======
-	
->>>>>>> 7bed830d7f4a3d6acf81a09a73c02cc7106e3b28
 	@Test
 	public void testNoCollision(){
 		FenetreContener fe = new FenetreContener();
