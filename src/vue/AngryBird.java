@@ -28,7 +28,6 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 	private ArrayList<Obstacle> ob = new ArrayList<>(); // Liste les obstacle du jeu
 	private Bird bird; // Mon petit oiseau :D
 	boolean init = true; // Boolean qui me sert à initialiser une fois certains élément
-	private int j=0;
 	
 	public AngryBird(FenetreContener fenetre) {
 		this.fenetre = fenetre;
@@ -43,9 +42,9 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 	 */
 	public void paint(Graphics g) {
 		if(this.init){
-			this.initBird(); // Creation de l'oiseau
-			this.initObstacle(); //Creation des obstacles
-			this.init = false;
+		this.initBird(); // Creation de l'oiseau
+		this.initObstacle(); //Creation des obstacles
+		this.init = false;
 		}
 		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this,this.fenetre) && !Calcul.testTemps(bird.getCoord().getT(),bird.getNbCourbe())){ // Si l'oiseau ne touche pas l'obstacle le plus proche
 			g.clearRect(0, 0, this.fenetre.getWidth(), this.fenetre.getHeight()); //efface tout
@@ -53,28 +52,12 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 		this.bird.drawCentre(g); // Dessine tous les centre des positions de l'oiseau
 		this.bird.drawBird(g); //Dessine l'oiseau a la nouvelle position
 		this.bird.drawBec(g); //Dessine le bec de l'oiseau	
-		this.bird.deplaceBird(); // Calcul les nouvelles coordonnees de l'oiseau
-		
-		this.ob.get(0).deplaceObstCercle();
-		j++;
-		if(j>100){
-			j=0;
-		}
-		if(j<50){
-			this.ob.get(1).deplaceObstGtD();
-			this.ob.get(2).deplaceObstDtG();
-		}else{
-			this.ob.get(2).deplaceObstGtD();
-			this.ob.get(1).deplaceObstDtG();
-		}
-		/*for(int i = 0; i < Constantes.nbOb; i++){
-			this.ob.get(i).deplaceObstCercle();
-		}*/
-		
+		this.bird.deplace(); // Calcul les nouvelles coordonnees de l'oiseau	
 		if(Calcul.testContactObstacle(this)){
 			try {
 				Thread.sleep(Constantes.tempsAttente);
 			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -92,12 +75,12 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 	 * This function launches the bird's movement
 	 */
 	public void go(){
-		Timer timer = new Timer();
 		TimerTask task = new TimerTask(){
 			public void run(){
 				repaint();
 			}
 		};
+		Timer timer = new Timer();
 		timer.schedule(task, 0, Constantes.temps);
 	}
 	
@@ -107,7 +90,7 @@ public class AngryBird extends JPanel implements MouseListener{ //Classe princip
 	 */
 	public void initObstacle(){ //Permet d'initialiser les obstacles
 		for(int i = 0; i<Constantes.nbOb;i++){
-			this.ob.add(new Obstacle(new Coordonnees(this.fenetre.getWidth()-100, i*50+50,0),Color.GREEN,this.fenetre)); // Coord � peu pr�s en dur
+			this.ob.add(new Obstacle(new Coordonnees(this.fenetre.getWidth()-100, i*50+50,0),Color.GREEN)); // Coord � peu pr�s en dur
 		}
 	}
 	

@@ -40,10 +40,10 @@ public class Bird{ //Mon petit oiseau :D
 	/**
 	 * This function moves the bird point to point according to the values x and y
 	 */
-	public void deplaceBird(){ //D�place les x et y selon le temps (T), Parabole cod� en dur � changer en al�atoire !
+	public void deplace(){ //D�place les x et y selon le temps (T), Parabole cod� en dur � changer en al�atoire !
 		this.changement(this.nbCourbe);
 		if(this.nbCourbe==0){
-			//System.out.println(this.coeff);
+			System.out.println(this.coeff);
 			this.coord.setX(this.coeff*this.coord.getT()+this.fenetre.getWidth()/2);
 			this.coord.setY(this.coord.getT()*this.coord.getT());
 			this.coord.setT(this.coord.getT()+0.1); // Varier le + pour faire varier la fr�quence de point. >0
