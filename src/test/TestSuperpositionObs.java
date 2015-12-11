@@ -14,7 +14,7 @@ import controleur.Calcul;
 import controleur.Obstacle;
 
 public class TestSuperpositionObs {
-
+/*
 	@Test
 	public void testSuperposeExact() {
 		FenetreContener fe = new FenetreContener();
@@ -57,5 +57,5 @@ public class TestSuperpositionObs {
 		angry.setOb(ListOb);
 		assertFalse(Calcul.testSupperpositionObstacle(angry));
 	}
-	
+	*/
 }
