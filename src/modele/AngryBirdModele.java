@@ -23,13 +23,12 @@ import vue.AngryBirdVue;
 
 public class AngryBirdModele extends Observable {
 
-	private BirdModele b = new BirdModele(0);
+	private BirdModele b = new BirdModele();
 	private ArrayList<ObstacleModele> ob;
-	/*private VecteurModele acceleration;
-	private VecteurModele vitesse;*/
 	private int fenetreX = 1000;
 	private int fenetreY = 500;
 	public javax.swing.Timer timer;
+	private GraphismeModele graph = new GraphismeModele();
 
 	public AngryBirdModele() {
 		this.initB();
@@ -45,9 +44,9 @@ public class AngryBirdModele extends Observable {
 		ob = new ArrayList<>();
 		for(int i = 1;i<=Constantes.nbOb;i++){
 			if(i<Constantes.nbOb)
-				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"o",new VecteurModele(-1, 0)));
+				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"o",new VecteurModele(-i, 0)));
 			else
-				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"r",new VecteurModele(0, 1)));	
+				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"r",new VecteurModele(0, i)));	
 		}
 	}
 
@@ -67,14 +66,6 @@ public class AngryBirdModele extends Observable {
 			timer.stop();
 		}
 	}
-
-	//public void deplaceOB(/*ObstacleModele o*/){
-	//	o.setCoord(new CoordonneesModele(o.getX()+o.getVitesse().getX(), o.getY()+o.getVitesse().getY()));
-	//	for (ObstacleModele ob : ob) {
-	//		ob.setCoord(new CoordonneesModele(ob.getX()+ob.getVitesse().getX(), ob.getY()+ob.getVitesse().getY()));
-
-	//}
-	//}
 
 	public void deplaceOB(){
 		ActionListener a = new ActionListener() {
@@ -116,23 +107,6 @@ public class AngryBirdModele extends Observable {
 
 	}
 
-	/*public void goOB(){
-		ActionListener a = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (ObstacleModele ob : ob) {
-					deplaceOB(ob);
-				}
-				setChanged ();
-				notifyObservers ();
-			}
-		};
-		timer = new javax.swing.Timer(1000, a);
-		timer.start();
-
-	}*/
-
 	public BirdModele getB() {
 		return b;
 	}
@@ -148,11 +122,4 @@ public class AngryBirdModele extends Observable {
 	public int getFenetreY() {
 		return fenetreY;
 	}
-
-	/*public VecteurModele getVitesse() {
-		return vitesse;
-	}
-public VecteurModele getAcceleration() {
-		return acceleration;
-	}*/
 }

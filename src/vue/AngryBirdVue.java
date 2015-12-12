@@ -62,6 +62,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 	public void dessineBird(Graphics g,BirdModele bird){
 		g.setColor(bird.getColor());
 		g.drawOval(bird.getX()-bird.getRayon(),bird.getY()-bird.getRayon(), bird.getRayon()*2, bird.getRayon()*2);
+		g.drawString("" + bird.getNb(), 50, 50);
 	}
 	
 	public void dessineBec(Graphics g,BirdModele bird){
@@ -90,53 +91,5 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 	public void update(Observable arg0, Object arg1) {
 		repaint();
 	}
-
-	/*@Override
-	public void mouseClicked(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		if(this.model.getB().getCentre().size()<1 && Calcul.calculDistance(new CoordonneesModele(e.getX(), e.getY()), new CoordonneesModele(model.getB().getX(), model.getB().getY()))<=Constantes.rayonBird){
-			this.model.getB().getVitesse().setX(e.getX());
-			this.model.getB().getVitesse().setY(e.getY());
-		}
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		if(this.model.getB().getVitesse().getX()!= 0 && this.model.getB().getVitesse().getY()!= 0 && this.model.getB().getCentre().size()<1){
-			this.model.getB().getVitesse().setX((this.model.getB().getVitesse().getX()-e.getX())*7);//*4 pour rendre realiste la simu
-			this.model.getB().getVitesse().setY((this.model.getB().getVitesse().getY()-e.getY())*7);
-			this.model.go();
-		}
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		if(Calcul.calculDistance(new CoordonneesModele(e.getX(), e.getY()), new CoordonneesModele(model.getB().getCoord().getX(), model.getB().getCoord().getY()))<=Constantes.rayonBird && this.model.getB().getCentre().size()<1){
-			if(this.model.getB().getVitesse().getX()== 0 && this.model.getB().getVitesse().getY()== 0){//Permet si le premier clique n'est pas dans la zone
-				this.model.getB().getVitesse().setX(e.getX());
-				this.model.getB().getVitesse().setY(e.getY());
-			}
-			model.getB().setCoord(new CoordonneesModele(e.getX(), e.getY()));
-		}
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
-
-	}*/
 
 }

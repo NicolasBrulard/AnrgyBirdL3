@@ -21,11 +21,10 @@ public class BirdModele extends Observable {
 	private CoordonneesModele coordBec;
 
 	
-	public BirdModele(int nb) {
+	public BirdModele() {
 		acceleration = new VecteurModele(0,-Constantes.g);
 		this.vitesse = new VecteurModele(0,0);
 		centre = new ArrayList<VecteurModele>();
-		this.nb = nb;
 	}
 	
 	public int getNb() {
