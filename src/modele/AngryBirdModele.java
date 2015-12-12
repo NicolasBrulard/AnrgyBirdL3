@@ -106,7 +106,7 @@ public class AngryBirdModele extends Observable {
 		timer.start();
 
 	}
-
+	
 	public BirdModele getB() {
 		return b;
 	}
@@ -122,4 +122,5 @@ public class AngryBirdModele extends Observable {
 	public int getFenetreY() {
 		return fenetreY;
 	}
+
 }

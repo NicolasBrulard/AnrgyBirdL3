@@ -1,12 +1,9 @@
 package modele;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Random;
 
-import vue.FenetreContener;
 
 public class BirdModele extends Observable {
 

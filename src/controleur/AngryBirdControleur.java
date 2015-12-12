@@ -17,6 +17,7 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 	//AngryBirdVue vue;
 	
 	AngryBirdModele m ;
+	
 	public AngryBirdControleur(AngryBirdModele model/* AngryBirdVue vue*/){
 		//vue.addMouseListener(this);
 		this.m = model;

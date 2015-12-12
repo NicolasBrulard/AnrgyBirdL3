@@ -3,8 +3,8 @@ package modele;
 import java.util.Observable;
 
 public class CoordonneesModele extends Observable{
-	private double x; //Les doubles sont plus pratiques à manipuler pour les calculs
-	private double y; // Donc attention à caster en int pour les méthodes de Graphics
+	private double x; //Les doubles sont plus pratiques Ã  manipuler pour les calculs
+	private double y; // Donc attention Ã  caster en int pour les mÃ©thodes de Graphics
 	
 	public CoordonneesModele(double x, double y) {
 		this.x = x;
