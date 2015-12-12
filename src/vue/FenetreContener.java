@@ -15,8 +15,8 @@ public class FenetreContener extends JFrame{ // Fenetre dans laquelle est conten
 	public FenetreContener() {
 		this.setSize(Constantes.fenetreX,Constantes.fenetreY);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
-
 }
