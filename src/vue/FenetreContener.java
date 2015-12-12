@@ -13,6 +13,7 @@ public class FenetreContener extends JFrame{ // Fenetre dans laquelle est conten
 	private static final long serialVersionUID = 1L;
 
 	public FenetreContener() {
+		this.pack();
 		this.setSize(Constantes.fenetreX,Constantes.fenetreY);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
