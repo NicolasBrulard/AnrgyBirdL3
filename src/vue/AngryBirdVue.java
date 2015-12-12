@@ -65,8 +65,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 	}
 	
 	public void dessineBec(Graphics g,BirdModele bird){
-		g.drawLine((int)bi
-				rd.getX(),(int) bird.getY(), (int)(bird.getX()+model.getB().getVitesse().getX()/15), (int)(bird.getY()+model.getB().getVitesse().getY()/15));
+		g.drawLine((int)bird.getX(),(int) bird.getY(), (int)(bird.getX()+model.getB().getVitesse().getX()/15), (int)(bird.getY()+model.getB().getVitesse().getY()/15));
 	}
 
 	public void dessineObstaclesRond(Graphics g, ArrayList<ObstacleModele> obs){
