@@ -25,11 +25,10 @@ public class AngryBirdModele extends Observable {
 
 	private BirdModele b = new BirdModele();
 	private ArrayList<ObstacleModele> ob;
-	/*private VecteurModele acceleration;
-	private VecteurModele vitesse;*/
 	private int fenetreX = 1000;
 	private int fenetreY = 500;
 	public javax.swing.Timer timer;
+	private GraphismeModele graph = new GraphismeModele();
 
 	public AngryBirdModele() {
 		this.initB();
@@ -67,14 +66,6 @@ public class AngryBirdModele extends Observable {
 			timer.stop();
 		}
 	}
-
-	//public void deplaceOB(/*ObstacleModele o*/){
-	//	o.setCoord(new CoordonneesModele(o.getX()+o.getVitesse().getX(), o.getY()+o.getVitesse().getY()));
-	//	for (ObstacleModele ob : ob) {
-	//		ob.setCoord(new CoordonneesModele(ob.getX()+ob.getVitesse().getX(), ob.getY()+ob.getVitesse().getY()));
-
-	//}
-	//}
 
 	public void deplaceOB(){
 		ActionListener a = new ActionListener() {
@@ -115,22 +106,7 @@ public class AngryBirdModele extends Observable {
 		timer.start();
 
 	}
-
-	/*public void goOB(){
-		ActionListener a = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (ObstacleModele ob : ob) {
-					deplaceOB(ob);
-				}
-				setChanged ();
-				notifyObservers ();
-			}
-		};
-		timer = new javax.swing.Timer(1000, a);
-		timer.start();
-	}*/
-
+	
 	public BirdModele getB() {
 		return b;
 	}
@@ -147,10 +123,4 @@ public class AngryBirdModele extends Observable {
 		return fenetreY;
 	}
 
-	/*public VecteurModele getVitesse() {
-		return vitesse;
-	}
-public VecteurModele getAcceleration() {
-		return acceleration;
-	}*/
 }

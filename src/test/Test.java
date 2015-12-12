@@ -6,6 +6,9 @@ import static org.junit.Assert.assertEquals;
 import java.awt.Color;
 
 
+
+import java.awt.Color;
+
 import modele.BirdModele;
 import modele.Calcul;
 import modele.CoordonneesModele;
@@ -22,6 +25,10 @@ public class Test {
 				assertEquals(5.0, Calcul.calculDistance(bird.getCoord(), new ObstacleModele(55, 55,"o",new VecteurModele(5, 5)).getCoord()),0.01); 	
 
 	 }
+
+		bird.setCoord(new CoordonneesModele(50, 55));
+		assertEquals(5.0, Calcul.calculDistance(bird.getCoord(), new ObstacleModele(55, 55,"o",new VecteurModele(5, 5)).getCoord()),0.01);
+	}
 	
 	
 

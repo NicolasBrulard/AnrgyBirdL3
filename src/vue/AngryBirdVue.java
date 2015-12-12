@@ -102,6 +102,10 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		if(graph.getGraph()==false){
 			g.drawImage(demonBird,bird.getX()-bird.getRayon()-10,bird.getY()-bird.getRayon()-9,null);
 		}
+
+		g.drawString("" + bird.getNb(), 50, 50);
+
+		g.drawImage(demonBird,bird.getX()-bird.getRayon()-10,bird.getY()-bird.getRayon()-9,null);
 	}
 	
 	public void dessineBec(Graphics g,BirdModele bird){
