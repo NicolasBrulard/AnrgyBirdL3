@@ -1,6 +1,8 @@
 package vue;
 
 
+
+
 import javax.swing.JFrame;
 
 import modele.Constantes;
@@ -10,6 +12,7 @@ public class FenetreContener extends JFrame{ // Fenetre dans laquelle est conten
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	public FenetreContener() {
