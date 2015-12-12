@@ -23,7 +23,7 @@ import vue.AngryBirdVue;
 
 public class AngryBirdModele extends Observable {
 
-	private BirdModele b = new BirdModele(0);
+	private BirdModele b = new BirdModele();
 	private ArrayList<ObstacleModele> ob;
 	/*private VecteurModele acceleration;
 	private VecteurModele vitesse;*/
@@ -45,9 +45,9 @@ public class AngryBirdModele extends Observable {
 		ob = new ArrayList<>();
 		for(int i = 1;i<=Constantes.nbOb;i++){
 			if(i<Constantes.nbOb)
-				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"o",new VecteurModele(-1, 0)));
+				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"o",new VecteurModele(-i, 0)));
 			else
-				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"r",new VecteurModele(0, 1)));	
+				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"r",new VecteurModele(0, i)));	
 		}
 	}
 

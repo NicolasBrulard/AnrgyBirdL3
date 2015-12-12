@@ -1,5 +1,7 @@
 package controleur;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -11,12 +13,14 @@ import modele.AngryBirdModele;
 import modele.Calcul;
 import modele.Constantes;
 import modele.CoordonneesModele;
+import modele.GraphismeModele;
 
-public class AngryBirdControleur implements MouseListener,MouseMotionListener{
+public class AngryBirdControleur implements MouseListener,MouseMotionListener,KeyListener{
 
 	//AngryBirdVue vue;
 	
 	AngryBirdModele m ;
+	GraphismeModele graph = new GraphismeModele();
 	
 	public AngryBirdControleur(AngryBirdModele model/* AngryBirdVue vue*/){
 		//vue.addMouseListener(this);
@@ -69,6 +73,22 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void keyTyped(KeyEvent evt) {
+		
+			graph.setGraph(!graph.getGraph());
+			char c = evt.getKeyChar();
+			System.out.println(""+c);
+		
+	}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
 		
 	}
 }

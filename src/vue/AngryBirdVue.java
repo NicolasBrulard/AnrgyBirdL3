@@ -2,6 +2,8 @@ package vue;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -23,6 +25,7 @@ import modele.BirdModele;
 import modele.Calcul;
 import modele.Constantes;
 import modele.CoordonneesModele;
+import modele.GraphismeModele;
 import modele.ObstacleModele;
 import modele.VecteurModele;
 import controleur.AngryBirdControleur;
@@ -38,6 +41,8 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 	private BufferedImage obsRond;
 	private BufferedImage obsCarre;
 	
+	private GraphismeModele graph = new GraphismeModele();
+	
 	public AngryBirdVue(FenetreContener fenetre, AngryBirdControleur control, AngryBirdModele model) {
 		this.fenetre = fenetre;
 		this.model = model;
@@ -48,6 +53,9 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		this.model.getB().addObserver(this);
 		this.addMouseMotionListener(control);
 		model.deplaceOB();
+		
+		this.addKeyListener(control);
+		
 		try {
 			demonBird = ImageIO.read(new File("src/images/demonbirdlittle.png"));
 			background = ImageIO.read(new File("src/images/background.png"));
@@ -57,6 +65,9 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+			 
+		
 		
 	}
 
@@ -87,7 +98,10 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 	public void dessineBird(Graphics g,BirdModele bird){
 		g.setColor(bird.getColor());
 		g.drawOval(bird.getX()-bird.getRayon(),bird.getY()-bird.getRayon(), bird.getRayon()*2, bird.getRayon()*2);
-		g.drawImage(demonBird,bird.getX()-bird.getRayon()-10,bird.getY()-bird.getRayon()-9,null);
+		g.drawString("" + bird.getNb(), 50, 50);
+		if(graph.getGraph()==false){
+			g.drawImage(demonBird,bird.getX()-bird.getRayon()-10,bird.getY()-bird.getRayon()-9,null);
+		}
 	}
 	
 	public void dessineBec(Graphics g,BirdModele bird){
@@ -99,10 +113,16 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 			g.setColor(ob.getColor());
 			if(ob.getF().equals("o")){
 				g.fillOval(ob.getX()-ob.getRayon(),ob.getY()-ob.getRayon(), ob.getRayon()*2, ob.getRayon()*2);
-				g.drawImage(obsRond, ob.getX()-ob.getRayon(), ob.getY()-ob.getRayon(), null);
+				if(graph.getGraph()==false){
+					g.drawImage(obsRond, ob.getX()-ob.getRayon(), ob.getY()-ob.getRayon(), null);
+				}
+				
 			}else{
 				g.fillRect(ob.getX()-ob.getRayon(),ob.getY()-ob.getRayon(), ob.getRayon()*2, ob.getRayon()*2);
-				g.drawImage(obsCarre, ob.getX()-ob.getRayon(), ob.getY()-ob.getRayon(), null);
+				if(graph.getGraph()==false){
+					g.drawImage(obsCarre, ob.getX()-ob.getRayon(), ob.getY()-ob.getRayon(), null);
+				}
+				
 			}
 			
 		}
@@ -120,42 +140,5 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		repaint();
 	}
 
-	/*@Override
-	public void mouseClicked(MouseEvent e) {
-	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-	}
-	@Override
-	public void mousePressed(MouseEvent e) {
-		if(this.model.getB().getCentre().size()<1 && Calcul.calculDistance(new CoordonneesModele(e.getX(), e.getY()), new CoordonneesModele(model.getB().getX(), model.getB().getY()))<=Constantes.rayonBird){
-			this.model.getB().getVitesse().setX(e.getX());
-			this.model.getB().getVitesse().setY(e.getY());
-		}
-	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		if(this.model.getB().getVitesse().getX()!= 0 && this.model.getB().getVitesse().getY()!= 0 && this.model.getB().getCentre().size()<1){
-			this.model.getB().getVitesse().setX((this.model.getB().getVitesse().getX()-e.getX())*7);//*4 pour rendre realiste la simu
-			this.model.getB().getVitesse().setY((this.model.getB().getVitesse().getY()-e.getY())*7);
-			this.model.go();
-		}
-	}
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		if(Calcul.calculDistance(new CoordonneesModele(e.getX(), e.getY()), new CoordonneesModele(model.getB().getCoord().getX(), model.getB().getCoord().getY()))<=Constantes.rayonBird && this.model.getB().getCentre().size()<1){
-			if(this.model.getB().getVitesse().getX()== 0 && this.model.getB().getVitesse().getY()== 0){//Permet si le premier clique n'est pas dans la zone
-				this.model.getB().getVitesse().setX(e.getX());
-				this.model.getB().getVitesse().setY(e.getY());
-			}
-			model.getB().setCoord(new CoordonneesModele(e.getX(), e.getY()));
-		}
-	}
-	@Override
-	public void mouseMoved(MouseEvent e) {
-	}*/
 
 }

@@ -1,21 +1,27 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 
 import java.awt.Color;
 
-import modele.Coordonnees;
-import controleur.Bird;
-import controleur.Calcul;
-import controleur.Obstacle;
-import vue.FenetreContener;
+
+import modele.BirdModele;
+import modele.Calcul;
+import modele.CoordonneesModele;
+import modele.ObstacleModele;
+import modele.VecteurModele;
 
 public class Test {
 
+	@SuppressWarnings("deprecation")
 	@org.junit.Test
 	public void testCalculDistance() { // Calcul de distance OK !
-		assertEquals(7.07, Calcul.calculDistance(new Bird(new Coordonnees(50, 50, 0), Color.red,new FenetreContener()).getCoord(), new Obstacle(new Coordonnees(55, 55, 0), Color.blue).getC()),0.01);
-	}
+		BirdModele bird = new BirdModele();
+				bird.setCoord(new CoordonneesModele(50, 55));
+				assertEquals(5.0, Calcul.calculDistance(bird.getCoord(), new ObstacleModele(55, 55,"o",new VecteurModele(5, 5)).getCoord()),0.01); 	
+
+	 }
 	
 	
 
