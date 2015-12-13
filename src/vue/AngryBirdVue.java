@@ -31,6 +31,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 	private BufferedImage background;
 	private BufferedImage obsRond;
 	private BufferedImage obsCarre;
+	private BufferedImage btn;
 	
 	public AngryBirdVue(FenetreContener fenetre, AngryBirdControleur control, AngryBirdModele model) {
 		this.fenetre = fenetre;
@@ -51,6 +52,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 			background = ImageIO.read(new File("src/images/background.png"));
 			obsRond = ImageIO.read(new File("src/images/obsrond.png"));
 			obsCarre = ImageIO.read(new File("src/images/obscarre.png"));
+			btn = ImageIO.read(new File("src/images/btn.jpg"));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
@@ -60,6 +62,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 	public void paint(Graphics g) {
 		g.clearRect(0, 0, model.getFenetreX(), model.getFenetreY());
 		this.dessineFond(g);
+		g.drawImage(btn,0,0,null);
 		this.dessineBird(g, this.model.getB());
 		this.dessineObstaclesRond(g, model.getOb());
 		this.dessineCentre(g);
@@ -109,11 +112,17 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 					g.fillOval(ob.getX()-ob.getRayon(),ob.getY()-ob.getRayon(), ob.getRayon()*2, ob.getRayon()*2);
 					g.drawImage(obsRond, ob.getX()-ob.getRayon(), ob.getY()-ob.getRayon(), null);
 				}
+				else{
+					g.drawOval(ob.getX()-ob.getRayon(),ob.getY()-ob.getRayon(), ob.getRayon()*2, ob.getRayon()*2);
+				}
 				
 			}else{
 				if(this.model.getGraph().getGraph()){
 					g.fillRect(ob.getX()-ob.getRayon(),ob.getY()-ob.getRayon(), ob.getRayon()*2, ob.getRayon()*2);
 					g.drawImage(obsCarre, ob.getX()-ob.getRayon(), ob.getY()-ob.getRayon(), null);
+				}
+				else{
+					g.drawRect(ob.getX()-ob.getRayon(),ob.getY()-ob.getRayon(), ob.getRayon()*2, ob.getRayon()*2);
 				}
 			}	
 		}
