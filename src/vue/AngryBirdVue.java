@@ -92,7 +92,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 			g.drawOval(bird.getX()-bird.getRayon(),bird.getY()-bird.getRayon(), bird.getRayon()*2, bird.getRayon()*2);
 		}
 
-		g.drawString("" + bird.getNb(), 50, 50);
+		g.drawString("" + bird.getNb(), 50, 125);
 
 		//g.drawImage(demonBird,bird.getX()-bird.getRayon()-10,bird.getY()-bird.getRayon()-9,null);
 	}
