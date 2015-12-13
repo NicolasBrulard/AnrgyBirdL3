@@ -121,12 +121,8 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		g.setColor(bird.getColor());
 		if(this.model.getGraph().getGraph()){
 			g.drawImage(demonBird,bird.getX()-bird.getRayon()-10,bird.getY()-bird.getRayon()-9,null);
-<<<<<<< Updated upstream
 			//this.rotation(50);
 
-=======
-			
->>>>>>> Stashed changes
 		}
 		else {
 			g.drawOval(bird.getX()-bird.getRayon(),bird.getY()-bird.getRayon(), bird.getRayon()*2, bird.getRayon()*2);
