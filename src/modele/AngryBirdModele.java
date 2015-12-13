@@ -1,25 +1,9 @@
 package modele;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.TimerTask;
-
-import javax.management.timer.Timer;
-
-
-
-
-
-
-
-
-import javax.swing.JComponent;
-
-import vue.AngryBirdVue;
 
 public class AngryBirdModele extends Observable {
 
