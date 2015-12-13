@@ -82,7 +82,7 @@ public class Calcul {
 	 */
 	public static boolean testContactFenetre(AngryBirdModele bird){
 		
-		if((bird.getB().getX()+Constantes.rayonBird>=bird.getFenetreX()-Constantes.decalageFenetreXDroite || bird.getB().getY()+Constantes.rayonBird*2+Constantes.decalageFenetreYBas>=bird.getFenetreY())){ //dernier if moche
+		if((bird.getB().getX()+Constantes.rayonBird>=bird.getFenetreX()-Constantes.decalageFenetreXDroite || bird.getB().getY()+Constantes.rayonBird*2+Constantes.decalageFenetreYBas>=bird.getFenetreY()-40)){ //dernier if moche
 			return true;
 		}
 		return false;
