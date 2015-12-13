@@ -2,6 +2,8 @@ package vue;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +12,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -56,6 +59,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
+
 		//this.setVisible(true);
 	}
 
@@ -117,6 +121,8 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		g.setColor(bird.getColor());
 		if(this.model.getGraph().getGraph()){
 			g.drawImage(demonBird,bird.getX()-bird.getRayon()-10,bird.getY()-bird.getRayon()-9,null);
+			//this.rotation(50);
+
 		}
 		else {
 			g.drawOval(bird.getX()-bird.getRayon(),bird.getY()-bird.getRayon(), bird.getRayon()*2, bird.getRayon()*2);
@@ -126,6 +132,24 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 
 		//g.drawImage(demonBird,bird.getX()-bird.getRayon()-10,bird.getY()-bird.getRayon()-9,null);
 	}
+	
+	public void rotation(int angle) 
+	{ 
+				BufferedImage image = null;
+				 JFileChooser choix=new JFileChooser();
+        			image = new BufferedImage(demonBird.getWidth(null), demonBird.getHeight(null),
+               	    BufferedImage.TYPE_BYTE_INDEXED);
+       				image.getGraphics().drawImage(demonBird, 0, 0, null);
+
+    
+		    AffineTransform transformer = new AffineTransform();
+    		transformer.rotate(angle, image.getWidth() / 2, image.getHeight() / 2);
+ 
+    		AffineTransformOp op = new AffineTransformOp(transformer,
+        	AffineTransformOp.TYPE_BILINEAR);
+    		image = op.filter(image, null);
+	}
+
 	
 	/**
 	 * Draws the bird mouth according to its movement (angle, direction)
