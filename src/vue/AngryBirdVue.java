@@ -85,7 +85,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		}
 		else{
 			JOptionPane jop = new JOptionPane();			
-			jop.showMessageDialog(null, "10 lancers ont été effectués. L'application va se fermer.", "Alert", JOptionPane.WARNING_MESSAGE,null);
+			jop.showMessageDialog(null, "10 lancers ont ete effectues. L'application va se fermer.", "Alert", JOptionPane.WARNING_MESSAGE,null);
 			System.exit(1);
 			/*if(option == JOptionPane.OK_OPTION){
 			  			
