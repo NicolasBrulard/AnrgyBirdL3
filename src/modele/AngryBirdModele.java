@@ -19,11 +19,17 @@ public class AngryBirdModele extends Observable {
 		this.initOb();
 	}
 
+	/**
+	 * Initiates the bird's coordinate (before the drag/drop part)
+	 */
 	public void initB(){
 		b.setCoord(new CoordonneesModele(150, Constantes.fenetreY-200));
 		b.setNb(b.getNb()+1);
 	}
 
+	/**
+	 * Initiates the obstacles on the scene
+	 */
 	public void initOb(){
 		ob = new ArrayList<>();
 		for(int i = 1;i<=Constantes.nbOb;i++){
@@ -34,6 +40,9 @@ public class AngryBirdModele extends Observable {
 		}
 	}
 
+	/**
+	 * Makes the bird move according to whether or not it can
+	 */
 	public void deplace(){
 		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this)){
 			this.b.deplace();
@@ -51,6 +60,9 @@ public class AngryBirdModele extends Observable {
 		}
 	}
 
+	/**
+	 * Makes the obstacles move on a straight line making them go back and forth
+	 */
 	public void deplaceOB(){
 		ActionListener a = new ActionListener() {
 
@@ -74,6 +86,9 @@ public class AngryBirdModele extends Observable {
 		timer.start();
 	}
 
+	/**
+	 * Launches the whole game, with a timer system.
+	 */
 	public void go(){
 		ActionListener a = new ActionListener() {
 

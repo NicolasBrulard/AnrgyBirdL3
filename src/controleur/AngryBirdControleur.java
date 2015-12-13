@@ -48,6 +48,9 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 		}
 	}
 	@Override
+	/**
+	 * Drop part : set the initial starting point of the bird
+	 */
 	public void mouseReleased(MouseEvent e) {
 		if(this.m.getB().getVitesse().getX()!= 0 && this.m.getB().getVitesse().getY()!= 0 && this.m.getB().getCentre().size()<1){
 			this.m.getB().getVitesse().setX((this.m.getB().getVitesse().getX()-this.m.getB().getX())*7);//*4 pour rendre realiste la simu
@@ -60,6 +63,9 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 		this.vue = vue;
 	}*/
 	@Override
+	/**
+	 * Drag part : compute the speed according to where the bird is dragged
+	 */
 	public void mouseDragged(MouseEvent e) {
 		if(Calcul.calculDistance(new CoordonneesModele(e.getX(), e.getY()), new CoordonneesModele(m.getB().getCoord().getX(), m.getB().getCoord().getY()))<=Constantes.rayonBird && this.m.getB().getCentre().size()<1){
 			if(this.m.getB().getVitesse().getX()== 0 && this.m.getB().getVitesse().getY()== 0){//Permet si le premier clique n'est pas dans la zone
