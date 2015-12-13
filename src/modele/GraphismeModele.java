@@ -4,7 +4,7 @@ import java.util.Observable;
 
 public class GraphismeModele extends Observable{
 
-	private boolean graph = false;
+	private boolean graph = true;
 	
 	public GraphismeModele() {
 		// TODO Auto-generated constructor stub

@@ -122,5 +122,9 @@ public class AngryBirdModele extends Observable {
 	public int getFenetreY() {
 		return fenetreY;
 	}
+	
+	public GraphismeModele getGraph() {
+		return graph;
+	}
 
 }

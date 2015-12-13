@@ -20,7 +20,6 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener,Ke
 	//AngryBirdVue vue;
 	
 	AngryBirdModele m ;
-	GraphismeModele graph = new GraphismeModele();
 	
 	public AngryBirdControleur(AngryBirdModele model/* AngryBirdVue vue*/){
 		//vue.addMouseListener(this);
@@ -76,19 +75,17 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener,Ke
 		
 	}
 	@Override
-	public void keyTyped(KeyEvent evt) {
-		
-			graph.setGraph(!graph.getGraph());
-			char c = evt.getKeyChar();
-			System.out.println(""+c);
-		
+	public void keyTyped(KeyEvent e) {
+		System.out.println("test");
+
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
+		System.out.println("test");
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
-		
+		System.out.println("test");
+
 	}
 }

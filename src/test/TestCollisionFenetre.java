@@ -1,35 +1,31 @@
 package test;
 
-import static org.junit.Assert.*;
-
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import modele.AngryBirdModele;
+import modele.BirdModele;
+import modele.Calcul;
 import modele.Constantes;
 import modele.Coordonnees;
+import modele.CoordonneesModele;
 
 import org.junit.Test;
 
-import vue.AngryBird;
 import vue.FenetreContener;
-import controleur.Bird;
-import controleur.Calcul;
 
 public class TestCollisionFenetre {
 
 	@Test
 	public void testCollisionFenetreXContact() {
-		FenetreContener fe = new FenetreContener();
-		Bird ois = new Bird(new Coordonnees(Constantes.fenetreX-1, Constantes.fenetreY/2, 0),null,fe);
-		AngryBird angry = new AngryBird(fe);
-		angry.setBird(ois);
-		assertTrue(Calcul.testContactFenetre(angry, fe));
+		AngryBirdModele angry = new AngryBirdModele();
+		angry.getB().setCoord(new CoordonneesModele(990, 50));
+		assertTrue(Calcul.testContactFenetre(angry));
 	}
 	@Test
 	public void testCollisionFenetreX() {
 		FenetreContener fe = new FenetreContener();
-		Bird ois = new Bird(new Coordonnees(Constantes.fenetreX+10, Constantes.fenetreY/2, 0),null,fe);
-		AngryBird angry = new AngryBird(fe);
-		angry.setBird(ois);
-		assertTrue(Calcul.testContactFenetre(angry, fe));
+		AngryBirdModele angry = new AngryBirdModele(); // pas fini
+		assertTrue(Calcul.testContactFenetre(angry));
 	}
 	
 	@Test
