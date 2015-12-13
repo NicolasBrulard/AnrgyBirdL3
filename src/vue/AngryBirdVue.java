@@ -10,6 +10,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import modele.AngryBirdModele;
@@ -24,6 +25,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 	private FenetreContener fenetre;
 	private AngryBirdModele model;
 	private AngryBirdControleur control;
+	//JButton btn = new JButton("graphisme");
 	
 	private BufferedImage demonBird;
 	private BufferedImage background;
@@ -34,16 +36,16 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		this.fenetre = fenetre;
 		this.model = model;
 		this.control = control;
+		//btn.setBounds(50,100,100,100);
+		//this.add(btn);
 		fenetre.setContentPane(this);
 		fenetre.setVisible(true);
 		this.addMouseListener(control);
 		model.addObserver(this); // Connexion entre la vue et le modele
 		this.model.getB().addObserver(this);
 		this.addMouseMotionListener(control);
-		model.deplaceOB();
-		
 		this.addKeyListener(control);
-		
+		model.deplaceOB();		
 		try {
 			demonBird = ImageIO.read(new File("src/images/demonbirdlittle.png"));
 			background = ImageIO.read(new File("src/images/background.png"));
@@ -52,7 +54,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-		this.setVisible(true);
+		//this.setVisible(true);
 	}
 
 	public void paint(Graphics g) {

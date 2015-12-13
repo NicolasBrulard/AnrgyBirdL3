@@ -1,21 +1,18 @@
 package controleur;
 
 import java.awt.event.KeyEvent;
+import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
-import vue.AngryBirdVue;
 import modele.AngryBirdModele;
 import modele.Calcul;
 import modele.Constantes;
 import modele.CoordonneesModele;
-import modele.GraphismeModele;
 
-public class AngryBirdControleur implements MouseListener,MouseMotionListener,KeyListener{
+public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 
 	//AngryBirdVue vue;
 	
@@ -73,19 +70,5 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener,Ke
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
-	}
-	@Override
-	public void keyTyped(KeyEvent e) {
-		System.out.println("test");
-
-	}
-	@Override
-	public void keyPressed(KeyEvent e) {
-		System.out.println("test");
-	}
-	@Override
-	public void keyReleased(KeyEvent e) {
-		System.out.println("test");
-
 	}
 }
