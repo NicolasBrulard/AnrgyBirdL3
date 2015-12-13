@@ -15,9 +15,9 @@ import modele.CoordonneesModele;
 public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 
 	//AngryBirdVue vue;
-	
+
 	AngryBirdModele m ;
-	
+
 	public AngryBirdControleur(AngryBirdModele model/* AngryBirdVue vue*/){
 		//vue.addMouseListener(this);
 		this.m = model;
@@ -25,17 +25,17 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -52,7 +52,7 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 			this.m.go();
 		}
 	}
-	
+
 	/*public void addVue(AngryBirdVue vue){
 		this.vue = vue;
 	}*/
@@ -63,12 +63,14 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 				this.m.getB().getVitesse().setX(e.getX());
 				this.m.getB().getVitesse().setY(e.getY());
 			}
-			m.getB().setCoord(new CoordonneesModele(e.getX(), e.getY()));
+			if(Calcul.calculDistance(new CoordonneesModele(150, Constantes.fenetreY-200), new CoordonneesModele(e.getX(), e.getY()))<=6*Constantes.rayonBird){
+				m.getB().setCoord(new CoordonneesModele(e.getX(), e.getY()));
+			}
 		}
 	}
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
