@@ -38,6 +38,9 @@ public class AngryBirdModele extends Observable {
 			else
 				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"r",new VecteurModele(0, i)));	
 		}
+		
+		ob.add(new ObstacleModele(this.fenetreX-350,200,"r",new VecteurModele(0, 0)));
+		ob.add(new ObstacleModele(this.fenetreX-350,400,"r",new VecteurModele(0, 0)));
 	}
 
 	/**
