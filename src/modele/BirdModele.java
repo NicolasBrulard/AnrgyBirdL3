@@ -33,12 +33,18 @@ public class BirdModele extends Observable {
 		this.nb = nb;
 	}
 	
+	/**
+	 * Initiates the basic attributes of the bird (acceleration, speed) with vectors
+	 */
 	public void init(){
 		acceleration = new VecteurModele(0,10);
 		this.vitesse = new VecteurModele(0,0);
 		centre = new ArrayList<VecteurModele>();
 	}
 	
+	/**
+	 * Computes the movement of the bird with the modification of its speed and acceleration over time
+	 */
 	public void deplace(){
 		this.getVitesse().setX(this.getVitesse().getX()+this.acceleration.getX());
 		this.getVitesse().setY(this.getVitesse().getY()+this.acceleration.getY());

@@ -59,6 +59,10 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		//this.setVisible(true);
 	}
 
+	/**
+	 * Draws the whole scene (bird, obstacles, ...)
+	 * @param g
+	 */
 	public void paint(Graphics g) {
 		g.clearRect(0, 0, model.getFenetreX(), model.getFenetreY());
 		this.dessineFond(g);
@@ -75,17 +79,30 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		repaint();
 	}
 
+	/**
+	 * Show the estimated path of the bird following the drag part
+	 * @param g
+	 */
 	public void lance(Graphics g){
 		g.setColor(Color.MAGENTA);
 		g.drawLine(model.getB().getX(), model.getB().getY(), 150, Constantes.fenetreY-200);
 	}
 	
+	/**
+	 * Draws the background of the scene
+	 * @param g
+	 */
 	public void dessineFond(Graphics g){
 		if(this.model.getGraph().getGraph()){
 		g.drawImage(background, 0, 0, null);
 		}
 	}
 
+	/**
+	 * Draws the bird according to its model
+	 * @param g
+	 * @param bird
+	 */
 	public void dessineBird(Graphics g,BirdModele bird){
 		g.setColor(bird.getColor());
 		if(this.model.getGraph().getGraph()){
@@ -100,10 +117,20 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		//g.drawImage(demonBird,bird.getX()-bird.getRayon()-10,bird.getY()-bird.getRayon()-9,null);
 	}
 	
+	/**
+	 * Draws the bird mouth according to its movement (angle, direction)
+	 * @param g
+	 * @param bird
+	 */
 	public void dessineBec(Graphics g,BirdModele bird){
 		g.drawLine((int)bird.getX(),(int) bird.getY(), (int)(bird.getX()+model.getB().getVitesse().getX()/15), (int)(bird.getY()+model.getB().getVitesse().getY()/15));
 	}
 
+	/**
+	 * Draws the obstacles whether they are rectangular or circular
+	 * @param g
+	 * @param obs
+	 */
 	public void dessineObstaclesRond(Graphics g, ArrayList<ObstacleModele> obs){
 		for (ObstacleModele ob : obs) {
 			g.setColor(ob.getColor());
@@ -128,6 +155,10 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		}
 	}
 
+	/**
+	 * Draws the center of the bird
+	 * @param g
+	 */
 	public void dessineCentre(Graphics g){
 		for (VecteurModele c : this.model.getB().getCentre()) {
 			g.setColor(Color.BLACK);
