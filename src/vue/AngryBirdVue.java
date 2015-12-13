@@ -85,7 +85,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		}
 		else{
 			JOptionPane jop = new JOptionPane();			
-			jop.showMessageDialog(null, "10 lancers ont été effectués. L'application va se fermer.", "Alert", JOptionPane.WARNING_MESSAGE,null);
+			jop.showMessageDialog(null, "10 lancers ont ete effectues. L'application va se fermer.", "Alert", JOptionPane.WARNING_MESSAGE,null);
 			System.exit(1);
 			/*if(option == JOptionPane.OK_OPTION){
 			  			
@@ -121,8 +121,12 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		g.setColor(bird.getColor());
 		if(this.model.getGraph().getGraph()){
 			g.drawImage(demonBird,bird.getX()-bird.getRayon()-10,bird.getY()-bird.getRayon()-9,null);
+<<<<<<< Updated upstream
 			//this.rotation(50);
 
+=======
+			
+>>>>>>> Stashed changes
 		}
 		else {
 			g.drawOval(bird.getX()-bird.getRayon(),bird.getY()-bird.getRayon(), bird.getRayon()*2, bird.getRayon()*2);
