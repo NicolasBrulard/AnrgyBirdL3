@@ -52,7 +52,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 			background = ImageIO.read(new File("src/images/background.png"));
 			obsRond = ImageIO.read(new File("src/images/obsrond.png"));
 			obsCarre = ImageIO.read(new File("src/images/obscarre.png"));
-			btn = ImageIO.read(new File("src/images/btn.jpg"));
+			btn = ImageIO.read(new File("src/images/btn.png"));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
