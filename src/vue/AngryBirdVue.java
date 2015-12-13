@@ -45,7 +45,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		model.addObserver(this); // Connexion entre la vue et le modele
 		this.model.getB().addObserver(this);
 		this.addMouseMotionListener(control);
-		//this.addKeyListener(control);
+
 		model.deplaceOB();		
 		try {
 			demonBird = ImageIO.read(new File("src/images/demonbirdlittle.png"));
