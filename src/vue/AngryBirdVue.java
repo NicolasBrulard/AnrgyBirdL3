@@ -10,7 +10,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import modele.AngryBirdModele;
@@ -60,6 +60,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 	}
 
 	public void paint(Graphics g) {
+		if(this.model.getB().getNb()<10){
 		g.clearRect(0, 0, model.getFenetreX(), model.getFenetreY());
 		this.dessineFond(g);
 		g.drawImage(btn,0,0,null);
@@ -73,6 +74,15 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 			this.dessineBec(g,this.model.getB());
 		}
 		repaint();
+		}
+		else{
+			JOptionPane jop = new JOptionPane();			
+			jop.showMessageDialog(null, "10 lancers ont été effectués. L'application va se fermer.", "Alert", JOptionPane.WARNING_MESSAGE,null);
+			System.exit(1);
+			/*if(option == JOptionPane.OK_OPTION){
+			  			
+			}*/
+		}
 	}
 
 	public void lance(Graphics g){
