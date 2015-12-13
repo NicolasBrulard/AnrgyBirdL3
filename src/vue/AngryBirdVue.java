@@ -44,7 +44,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		model.addObserver(this); // Connexion entre la vue et le modele
 		this.model.getB().addObserver(this);
 		this.addMouseMotionListener(control);
-		this.addKeyListener(control);
+		//this.addKeyListener(control);
 		model.deplaceOB();		
 		try {
 			demonBird = ImageIO.read(new File("src/images/demonbirdlittle.png"));
@@ -115,9 +115,7 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 					g.fillRect(ob.getX()-ob.getRayon(),ob.getY()-ob.getRayon(), ob.getRayon()*2, ob.getRayon()*2);
 					g.drawImage(obsCarre, ob.getX()-ob.getRayon(), ob.getY()-ob.getRayon(), null);
 				}
-				
-			}
-			
+			}	
 		}
 	}
 
