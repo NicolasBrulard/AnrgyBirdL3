@@ -9,14 +9,39 @@ public class ObstacleModele extends Observable {
 	private Color color = Color.GREEN;
 	private CoordonneesModele coord = new CoordonneesModele(0, 0);
 	private int rayon = 20;
+	private int masse = 100;
 	private String f;
 	private VecteurModele vitesse;
+	private VecteurModele acceleration = new VecteurModele(0, 0);
+
+	public VecteurModele getAcceleration() {
+		return acceleration;
+	}
+	
+	public int getMasse() {
+		return masse;
+	}
+	
+	public void setMasse(int masse) {
+		this.masse = masse;
+	}
+	
+	public void setAcceleration(VecteurModele acceleration) {
+		this.acceleration = acceleration;
+	}
 
 	public ObstacleModele(int x,int y, String f, VecteurModele vitesse) {
 		coord.setX(x);
 		coord.setY(y);
 		this.f =f ;
 		this.vitesse = vitesse;
+	}
+	
+	public void deplace(){
+		this.getVitesse().setX(this.getVitesse().getX()+this.acceleration.getX()*(this.masse/50));
+		this.getVitesse().setY(this.getVitesse().getY()+this.acceleration.getY()*(this.masse/50));
+		this.setX((int)(this.getX()+this.getVitesse().getX()/53));
+		this.setY((int)(this.getY()+this.getVitesse().getY()/53));
 	}
 	
 	public VecteurModele getVitesse() {

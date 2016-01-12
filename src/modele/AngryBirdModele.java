@@ -9,14 +9,16 @@ public class AngryBirdModele extends Observable {
 
 	private BirdModele b = new BirdModele();
 	private ArrayList<ObstacleModele> ob;
+	private SolModele sol;
 	private int fenetreX = 1000;
 	private int fenetreY = 500;
-	public javax.swing.Timer timer;
+	public javax.swing.Timer timer,timer2;
 	private GraphismeModele graph = new GraphismeModele();
 
 	public AngryBirdModele() {
 		this.initB();
 		this.initOb();
+		//this.initSol();
 	}
 
 	/**
@@ -26,6 +28,10 @@ public class AngryBirdModele extends Observable {
 		b.setCoord(new CoordonneesModele(150, Constantes.fenetreY-200));
 		b.setNb(b.getNb()+1);
 	}
+	
+	/*public void initSol(){
+		sol.setCoord(new CoordonneesModele(0, this.getFenetreY()-40));
+	}*/
 
 	/**
 	 * Initiates the obstacles on the scene
@@ -34,9 +40,9 @@ public class AngryBirdModele extends Observable {
 		ob = new ArrayList<>();
 		for(int i = 1;i<=Constantes.nbOb;i++){
 			if(i<Constantes.nbOb)
-				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"o",new VecteurModele(-i, 0)));
+				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"o",new VecteurModele(0, 0)));
 			else
-				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"r",new VecteurModele(0, i)));	
+				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"r",new VecteurModele(0, 0)));	
 		}
 		
 		ob.add(new ObstacleModele(this.fenetreX-350,200,"r",new VecteurModele(0, 0)));
@@ -50,13 +56,13 @@ public class AngryBirdModele extends Observable {
 		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this)){
 			this.b.deplace();
 		}
+		else if(Calcul.testContactObstacle(this)){
+			Calcul.chercherObsProche(this.getB(),this.getOb()).setVitesse(this.getB().getVitesse());
+			Calcul.chercherObsProche(this.getB(),this.getOb()).setAcceleration(this.b.getAcceleration());
+			this.getB().setVitesse(new VecteurModele(-this.getB().getVitesse().getX(),this.getB().getVitesse().getX()));
+		}
 		else{
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-
-				System.out.println(e.getMessage());
-			}
+			
 			this.initB();
 			this.getB().init();
 			timer.stop();
@@ -72,21 +78,20 @@ public class AngryBirdModele extends Observable {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for (ObstacleModele ob : ob) {
-					if(ob.getX()<fenetreX-180 || ob.getX()>fenetreX - 120){
+					/*if(ob.getX()<fenetreX-180 || ob.getX()>fenetreX - 120){
 						ob.getVitesse().setX(-ob.getVitesse().getX());
 						ob.getVitesse().setY(-ob.getVitesse().getY());
 					}
 					if(ob.getF().equals("r") && (ob.getY()<fenetreY-200 || ob.getY()>fenetreY - 100)){
 						ob.getVitesse().setX(-ob.getVitesse().getX());
 						ob.getVitesse().setY(-ob.getVitesse().getY());
-					}
-
-					ob.setCoord(new CoordonneesModele(ob.getX()+ob.getVitesse().getX(), ob.getY()+ob.getVitesse().getY()));
+					}*/
+					ob.deplace();
 				}
 			}
 		};
-		timer = new javax.swing.Timer(15, a);
-		timer.start();
+		timer2 = new javax.swing.Timer(15, a);
+		timer2.start();
 	}
 
 	/**

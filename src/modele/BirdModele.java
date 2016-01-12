@@ -46,8 +46,8 @@ public class BirdModele extends Observable {
 	 * Computes the movement of the bird with the modification of its speed and acceleration over time
 	 */
 	public void deplace(){
-		this.getVitesse().setX(this.getVitesse().getX()+this.acceleration.getX());
-		this.getVitesse().setY(this.getVitesse().getY()+this.acceleration.getY());
+		this.getVitesse().setX(this.getVitesse().getX()+this.acceleration.getX()*(this.masse/50));
+		this.getVitesse().setY(this.getVitesse().getY()+this.acceleration.getY()*(this.masse/50));
 		this.setX((int)(this.getX()+this.getVitesse().getX()/53));
 		this.setY((int)(this.getY()+this.getVitesse().getY()/53));
 	}
