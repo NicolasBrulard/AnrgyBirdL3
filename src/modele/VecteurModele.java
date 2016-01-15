@@ -30,5 +30,4 @@ public class VecteurModele extends Observable{
 		setChanged ();
 		notifyObservers ();
 	}
-	
 }
