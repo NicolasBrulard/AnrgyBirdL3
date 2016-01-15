@@ -58,21 +58,89 @@ public class Calcul {
 	
 	/**
 	 * This function tests if the Bird hits an obstacle
-	 * @param Bird
+	 * @param AngryBirdModel
 	 * @return true or false, depending on if there's a collision
 	 */
 
 	
-	public static boolean testContactObstacle(AngryBirdModele bird){ //Reenvoi vrai si la distance avec le plus proche obstacle est inferieur a la somme des deux rayons
-		if(Calcul.calculDistance(bird.getB().getCoord(), Calcul.chercherObsProche(bird.getB(),bird.getOb()).getCoord())< Calcul.chercherObsProche(bird.getB(),bird.getOb()).getRayon()+bird.getB().getRayon()){
+	public static boolean testContactObstacle(AngryBirdModele model){ //Renvoi vrai si la distance avec le plus proche obstacle est inferieur a la somme des deux rayons
+		if(Calcul.calculDistance(model.getB().getCoord(), Calcul.chercherObsProche(model.getB(),model.getOb()).getCoord())< Calcul.chercherObsProche(model.getB(),model.getOb()).getRayon()+model.getB().getRayon()){
 
-			Calcul.chercherObsProche(bird.getB(),bird.getOb()).setColor(Color.BLUE);
+			Calcul.chercherObsProche(model.getB(),model.getOb()).setColor(Color.BLUE);
 			//Calcul.chercherObsProche(bird.getB(),bird.getOb()).setAngle(180);
 
 			return true;
 		}		
 		return false;
 	}
+	
+	/**
+	 * This function tests if the Obstacle hits the ground
+	 * @param ObstacleModele
+	 * @param SolModele
+	 * @return true or false, depending on if there's a collision
+	 */
+
+	
+	public static boolean testContactObSol(ObstacleModele ob, SolModele sol){
+		
+		if((ob.getY()+ob.getRayon()) > sol.getY()){
+			ob.setColor(Color.CYAN);
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * This function tests if the Obstacle hits another Obstacle
+	 * @param List of Obstacle
+	 * @return the nearest obstacle
+	 */
+
+	
+	public static ObstacleModele chercheContactObOb(ObstacleModele ob, ArrayList<ObstacleModele> listObs) {
+		double distance = 999999;
+		ObstacleModele obsProche = null;
+		for (ObstacleModele obs : listObs) {
+				if(ob!=obs){	
+					if (distance > Calcul.calculDistance(ob.getCoord(), obs.getCoord())) { // Si la distance avec le nouvel
+						// obstacle est plus petite, alors
+						// il la recupere
+						
+						distance = Calcul.calculDistance(ob.getCoord(), obs.getCoord());
+						
+						obsProche = obs;
+					}
+				}
+			}
+		return obsProche;
+
+		}
+
+		
+
+	
+	
+	/**
+	 * This function tests if the Obstacle hits another Obstacle
+	 * @param Bird
+	 * @return true or false, depending on if there's a collision
+	 */
+
+	
+	public static boolean testContactObOb(ObstacleModele obstacle, ArrayList<ObstacleModele> listObs) {
+		ObstacleModele obs = Calcul.chercheContactObOb(obstacle, listObs);
+
+		if (Calcul.calculDistance(obs.getCoord(), obstacle.getCoord()) < obs.getRayon() + obstacle.getRayon()) {
+
+			return true;
+		}
+
+		return false;
+
+	}
+		
+	
 	
 	/**
 	 * This function tests if the Bird hits the top of the window or not
