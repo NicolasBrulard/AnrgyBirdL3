@@ -52,6 +52,7 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 	 * Drop part : set the initial starting point of the bird
 	 */
 	public void mouseReleased(MouseEvent e) {
+		m.setClique(false);
 		if(this.m.getB().getVitesse().getX()!= 0 && this.m.getB().getVitesse().getY()!= 0 && this.m.getB().getCentre().size()<1){
 			this.m.getB().getVitesse().setX((this.m.getB().getVitesse().getX()-this.m.getB().getX())*7);//*4 pour rendre realiste la simu
 			this.m.getB().getVitesse().setY((this.m.getB().getVitesse().getY()-this.m.getB().getY())*7);
@@ -67,13 +68,22 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 	 * Drag part : compute the speed according to where the bird is dragged
 	 */
 	public void mouseDragged(MouseEvent e) {
-		if(Calcul.calculDistance(new CoordonneesModele(e.getX(), e.getY()), new CoordonneesModele(m.getB().getCoord().getX(), m.getB().getCoord().getY()))<=Constantes.rayonBird && this.m.getB().getCentre().size()<1){
+		if(Calcul.calculDistance(new CoordonneesModele(e.getX(), e.getY()), new CoordonneesModele(m.getB().getCoord().getX(), m.getB().getCoord().getY()))<=Constantes.rayonBird){
+			m.setClique(true);
+		}
+		if(m.getClique() && this.m.getB().getCentre().size()<1){
 			if(this.m.getB().getVitesse().getX()== 0 && this.m.getB().getVitesse().getY()== 0){//Permet si le premier clique n'est pas dans la zone
 				this.m.getB().getVitesse().setX(e.getX());
 				this.m.getB().getVitesse().setY(e.getY());
 			}
 			if(Calcul.calculDistance(new CoordonneesModele(150, Constantes.fenetreY-200), new CoordonneesModele(e.getX(), e.getY()))<=6*Constantes.rayonBird){
 				m.getB().setCoord(new CoordonneesModele(e.getX(), e.getY()));
+			}
+			else{
+				while(Calcul.calculDistance(new CoordonneesModele(150, Constantes.fenetreY-200), new CoordonneesModele(e.getX(), e.getY()))<=6*Constantes.rayonBird){
+				int rediX = m.getB().getX()-e.getX();
+				int rediY = m.getB().getY()-e.getY();
+				m.getB().setCoord(new CoordonneesModele(m.getB().getX()+rediX, m.getB().getY()+rediY));}
 			}
 		}
 	}

@@ -14,11 +14,20 @@ public class AngryBirdModele extends Observable {
 	private int fenetreY = 500;
 	public javax.swing.Timer timer,timer2;
 	private GraphismeModele graph = new GraphismeModele();
+	private boolean clique= false;
 
 	public AngryBirdModele() {
 		this.initB();
 		this.initOb();
 		this.initSol();
+	}
+	
+	public void setClique(boolean clique) {
+		this.clique = clique;
+	}
+	
+	public boolean getClique(){
+		return this.clique;
 	}
 
 	/**
@@ -26,6 +35,7 @@ public class AngryBirdModele extends Observable {
 	 */
 	public void initB(){
 		b.setCoord(new CoordonneesModele(150, Constantes.fenetreY-200));
+		b.setVitesse(new VecteurModele(0, 0));
 		b.setNb(b.getNb()+1);
 	}
 	
