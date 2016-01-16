@@ -147,8 +147,7 @@ public class AngryBirdVue extends JPanel implements Observer/*
 		//	at.translate(-(model.getB().getX()), -(model.getB().getY()));
 			// g2d.drawImage(demonBird, at, this);
 			g2d.drawImage(demonBird, at, this);
-			at.rotate(-Math.toDegrees(Math.atan2(model.getB().getY()-model.getB().getVitesse().getY(), model.getB().getX()-model.getB().getVitesse().getX())));
-
+			
 		} else {
 			g.drawOval(bird.getX() - bird.getRayon(),
 					bird.getY() - bird.getRayon(), bird.getRayon() * 2,
