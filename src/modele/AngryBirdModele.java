@@ -9,7 +9,7 @@ public class AngryBirdModele extends Observable {
 
 	private BirdModele b = new BirdModele();
 	private ArrayList<ObstacleModele> ob;
-	private SolModele sol;
+	private SolModele sol = new SolModele();
 	private int fenetreX = 1000;
 	private int fenetreY = 500;
 	public javax.swing.Timer timer,timer2;
@@ -19,7 +19,7 @@ public class AngryBirdModele extends Observable {
 	public AngryBirdModele() {
 		this.initB();
 		this.initOb();
-		//this.initSol();
+		this.initSol();
 	}
 	
 	public void setClique(boolean clique) {
@@ -39,9 +39,9 @@ public class AngryBirdModele extends Observable {
 		b.setNb(b.getNb()+1);
 	}
 	
-	/*public void initSol(){
-		sol.setCoord(new CoordonneesModele(0, this.getFenetreY()-40));
-	}*/
+	public void initSol(){
+		sol.setCoord(new CoordonneesModele(0, Constantes.fenetreY-70));
+	}
 
 	/**
 	 * Initiates the obstacles on the scene
@@ -78,31 +78,39 @@ public class AngryBirdModele extends Observable {
 			timer.stop();
 		}
 	}
+	/*
+	public void stopOB(){
+		if(Calcul.testContactSol){
+			
+		}
+	}*/
 
 	/**
 	 * Makes the obstacles move on a straight line making them go back and forth
 	 */
 	public void deplaceOB(){
-		ActionListener a = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (ObstacleModele ob : ob) {
-					/*if(ob.getX()<fenetreX-180 || ob.getX()>fenetreX - 120){
-						ob.getVitesse().setX(-ob.getVitesse().getX());
-						ob.getVitesse().setY(-ob.getVitesse().getY());
+		for (ObstacleModele obs : ob) {
+			
+				ActionListener a = new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+						//if (!Calcul.testContactObSol(obs,sol) && !Calcul.testContactObOb(obs,ob)) {
+							
+							obs.deplace(obs,sol,ob);
+						
+						//}
+						setChanged ();
+						notifyObservers ();
 					}
-					if(ob.getF().equals("r") && (ob.getY()<fenetreY-200 || ob.getY()>fenetreY - 100)){
-						ob.getVitesse().setX(-ob.getVitesse().getX());
-						ob.getVitesse().setY(-ob.getVitesse().getY());
-					}*/
-					ob.deplace();
-				}
+				};
+				timer2 = new javax.swing.Timer(15, a);
+				timer2.start();
 			}
-		};
-		timer2 = new javax.swing.Timer(15, a);
-		timer2.start();
-	}
+		}
+	
+		
+	
 
 	/**
 	 * Launches the whole game, with a timer system.
@@ -130,6 +138,10 @@ public class AngryBirdModele extends Observable {
 
 	public ArrayList<ObstacleModele> getOb() {
 		return ob;
+	}
+	
+	public SolModele getSol(){
+		return sol;
 	}
 
 	public int getFenetreX() {

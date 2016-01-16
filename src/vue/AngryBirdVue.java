@@ -20,6 +20,7 @@ import modele.AngryBirdModele;
 import modele.BirdModele;
 import modele.Constantes;
 import modele.ObstacleModele;
+import modele.SolModele;
 import modele.VecteurModele;
 import controleur.AngryBirdControleur;
 
@@ -53,8 +54,8 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		try {
 			demonBird = ImageIO.read(new File("src/images/demonbirdlittle.png"));
 			background = ImageIO.read(new File("src/images/background.png"));
-			obsRond = ImageIO.read(new File("src/images/obsrond.png"));
-			obsCarre = ImageIO.read(new File("src/images/obscarre.png"));
+			//obsRond = ImageIO.read(new File("src/images/obsrond.png"));
+			//obsCarre = ImageIO.read(new File("src/images/obscarre.png"));
 			btn = ImageIO.read(new File("src/images/btn.png"));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
@@ -68,28 +69,32 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 	 * @param g
 	 */
 	public void paint(Graphics g) {
-		if(this.model.getB().getNb()<10){
-		g.clearRect(0, 0, model.getFenetreX(), model.getFenetreY());
-		this.dessineFond(g);
-		g.drawImage(btn,0,0,null);
-		this.dessineBird(g, this.model.getB());
-		this.dessineObstaclesRond(g, model.getOb());
-		this.dessineCentre(g);
-		if(model.getB().getCentre().size()<1){
-			this.lance(g);
-		}
-		else{
-			this.dessineBec(g,this.model.getB());
-		}
-		repaint();
-		}
-		else{
-			JOptionPane jop = new JOptionPane();			
-			jop.showMessageDialog(null, "10 lancers ont ete effectues. L'application va se fermer.", "Alert", JOptionPane.WARNING_MESSAGE,null);
+		if (this.model.getB().getNb() < 10) {
+			g.clearRect(0, 0, model.getFenetreX(), model.getFenetreY());
+			this.dessineFond(g);
+			g.drawImage(btn, 0, 0, null);
+			this.dessineBird(g, this.model.getB());
+			this.dessineObstacles(g, model.getOb());
+			this.dessineSol(g, model.getSol());
+			this.dessineCentre(g);
+			if (model.getB().getCentre().size() < 1) {
+				this.lance(g);
+			} else {
+				this.dessineBec(g, this.model.getB());
+			}
+			repaint();
+		} else {
+			JOptionPane jop = new JOptionPane();
+			jop.showMessageDialog(
+					null,
+					"10 lancers ont ete effectues. L'application va se fermer.",
+					"Alert", JOptionPane.WARNING_MESSAGE, null);
 			System.exit(1);
-			/*if(option == JOptionPane.OK_OPTION){
-			  			
-			}*/
+			/*
+			 * if(option == JOptionPane.OK_OPTION){
+			 * 
+			 * }
+			 */
 		}
 	}
 
@@ -121,7 +126,8 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 		g.setColor(bird.getColor());
 		if(this.model.getGraph().getGraph()){
 			g.drawImage(demonBird,bird.getX()-bird.getRayon()-10,bird.getY()-bird.getRayon()-9,null);
-			//this.rotation(50);
+			//demonBird.createGraphics().rotate(50);
+			this.rotation(50);
 
 		}
 		else {
@@ -165,13 +171,17 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 	 * @param g
 	 * @param obs
 	 */
-	public void dessineObstaclesRond(Graphics g, ArrayList<ObstacleModele> obs){
+	public void dessineObstacles(Graphics g, ArrayList<ObstacleModele> obs){
 		for (ObstacleModele ob : obs) {
-			g.setColor(ob.getColor());
+			
 			if(ob.getF().equals("o")){
 				if(this.model.getGraph().getGraph()){
+					g.setColor(Color.BLACK);
 					g.fillOval(ob.getX()-ob.getRayon(),ob.getY()-ob.getRayon(), ob.getRayon()*2, ob.getRayon()*2);
+					g.setColor(ob.getColor());
+					g.fillOval(ob.getX()-ob.getRayon()+2,ob.getY()-ob.getRayon()+2, ob.getRayon()*2-4, ob.getRayon()*2-4);
 					g.drawImage(obsRond, ob.getX()-ob.getRayon(), ob.getY()-ob.getRayon(), null);
+					
 				}
 				else{
 					g.drawOval(ob.getX()-ob.getRayon(),ob.getY()-ob.getRayon(), ob.getRayon()*2, ob.getRayon()*2);
@@ -179,7 +189,10 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 				
 			}else{
 				if(this.model.getGraph().getGraph()){
+					g.setColor(Color.BLACK);
 					g.fillRect(ob.getX()-ob.getRayon(),ob.getY()-ob.getRayon(), ob.getRayon()*2, ob.getRayon()*2);
+					g.setColor(ob.getColor());
+					g.fillRect(ob.getX()-ob.getRayon()+2,ob.getY()-ob.getRayon()+2, ob.getRayon()*2-4, ob.getRayon()*2-4);
 					g.drawImage(obsCarre, ob.getX()-ob.getRayon(), ob.getY()-ob.getRayon(), null);
 				}
 				else{
@@ -187,6 +200,15 @@ public class AngryBirdVue extends JPanel implements Observer/*,MouseListener,Mou
 				}
 			}	
 		}
+	}
+	
+	/**
+	 * Draws the ground to see where it's place exactly
+	 * @param g
+	 * @param obs
+	 */
+	public void dessineSol(Graphics g, SolModele sol){
+		g.drawRect(sol.getX(), sol.getY(), 999, 100);
 	}
 
 	/**
