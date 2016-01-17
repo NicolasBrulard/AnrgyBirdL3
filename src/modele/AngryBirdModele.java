@@ -17,6 +17,15 @@ public class AngryBirdModele extends Observable {
 	public javax.swing.Timer timer,timer2;
 	private GraphismeModele graph = new GraphismeModele();
 	private boolean clique= false;
+	private boolean rotate = false;
+	
+	public boolean getRotate(){
+		return this.rotate;
+	}
+	
+	public void setRotate(boolean rotate) {
+		this.rotate = rotate;
+	}
 
 	public AngryBirdModele() {
 		this.initB();

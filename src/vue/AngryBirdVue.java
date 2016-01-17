@@ -84,7 +84,6 @@ public class AngryBirdVue extends JPanel implements Observer/*
 	public void paint(Graphics g) {
 		
 			g.clearRect(0, 0, model.getFenetreX(), model.getFenetreY());
-			
 			this.dessineFond(g);
 			
 			g.drawImage(btn, 0, 0, null);
@@ -98,6 +97,8 @@ public class AngryBirdVue extends JPanel implements Observer/*
 			} else {
 				this.dessineBec(g, this.model.getB());
 			}
+			g.drawString("test rotate", Constantes.fenetreX-200, 0); // fais comme tes images
+
 			repaint();
 		
 	}
@@ -139,14 +140,20 @@ public class AngryBirdVue extends JPanel implements Observer/*
 //<<<<<<< Updated upstream
 			// g.drawImage(demonBird, bird.getX() - bird.getRayon() - 10,
 			// bird.getY() - bird.getRayon() - 9, null);
+			if(this.model.getRotate()){
 			Graphics2D g2d = (Graphics2D) g;
 			AffineTransform at = g2d.getTransform();
 			at.translate(model.getB().getX(), model.getB().getY());
 			at.rotate(-Math.toDegrees(Math.atan2(model.getB().getY()
 					/ 2*Constantes.YBirdDebut, model.getB().getX()
 					/ 2*Constantes.xBirdDebut)),20,10);
+			
 			g2d.drawImage(demonBird, at, null);
-		/*if (this.model.getGraph().getGraph() == 1 || this.model.getGraph().getGraph() == 2) {
+			}
+			else{
+				g.drawImage(demonBird,bird.getX()-bird.getRayon()-10,bird.getY()-bird.getRayon()-9,null);
+			}
+			/*if (this.model.getGraph().getGraph() == 1 || this.model.getGraph().getGraph() == 2) {
 			//g.drawImage(demonBird, bird.getX() - bird.getRayon() - 10,
 				//	bird.getY() - bird.getRayon() - 9, null);
 =======
