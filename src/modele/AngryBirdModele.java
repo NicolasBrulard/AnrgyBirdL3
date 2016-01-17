@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class AngryBirdModele extends Observable {
 
 	private BirdModele b = new BirdModele();
-	private ArrayList<ObstacleModele> ob;
+	private ArrayList<ObstacleModele> listOb;
 	private SolModele sol = new SolModele();
 	private int fenetreX = 1000;
 	private int fenetreY = 500;
@@ -57,16 +57,16 @@ public class AngryBirdModele extends Observable {
 	 * Initiates the obstacles on the scene
 	 */
 	public void initOb(){
-		ob = new ArrayList<>();
+		listOb = new ArrayList<>();
 		for(int i = 1;i<=Constantes.nbOb;i++){
 			if(i<Constantes.nbOb)
-				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"o",new VecteurModele(0, 0)));
+				listOb.add(new ObstacleModele(this.fenetreX-150,i*100,"o",new VecteurModele(0, 0)));
 			else
-				ob.add(new ObstacleModele(this.fenetreX-150,i*100,"r",new VecteurModele(0, 0)));	
+				listOb.add(new ObstacleModele(this.fenetreX-150,i*100,"r",new VecteurModele(0, 0)));	
 		}
 		
-		ob.add(new ObstacleModele(this.fenetreX-350,200,"r",new VecteurModele(0, 0)));
-		ob.add(new ObstacleModele(this.fenetreX-350,400,"r",new VecteurModele(0, 0)));
+		listOb.add(new ObstacleModele(this.fenetreX-350,200,"r",new VecteurModele(0, 0)));
+		listOb.add(new ObstacleModele(this.fenetreX-350,400,"r",new VecteurModele(0, 0)));
 	}
 
 	/**
@@ -74,11 +74,11 @@ public class AngryBirdModele extends Observable {
 	 */
 	public void deplace(){
 		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this)){
-			this.b.deplace();
+			this.getB().deplace();
 		}
 		else if(Calcul.testContactObstacle(this)){
-			Calcul.chercherObsProche(this.getB(),this.getOb()).setVitesse(this.getB().getVitesse());
-			Calcul.chercherObsProche(this.getB(),this.getOb()).setAcceleration(this.b.getAcceleration());
+			Calcul.chercherObsProche(this.getB(),this.getListOb()).setVitesse(this.getB().getVitesse());
+			Calcul.chercherObsProche(this.getB(),this.getListOb()).setAcceleration(this.getB().getAcceleration());
 			this.getB().setVitesse(new VecteurModele(-this.getB().getVitesse().getX(),this.getB().getVitesse().getX()));
 		}
 		else{
@@ -99,17 +99,33 @@ public class AngryBirdModele extends Observable {
 	 * Makes the obstacles move on a straight line making them go back and forth
 	 */
 	public void deplaceOB(){
-		for (ObstacleModele obs : ob) {
+		for (ObstacleModele obs : listOb) {
 			
 				ActionListener a = new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						
-						//if (!Calcul.testContactObSol(obs,sol) && !Calcul.testContactObOb(obs,ob)) {
-							
-							obs.deplace(obs,sol,ob);
 						
-						//}
+						if (Calcul.testContactObSol(obs,sol)) {
+							if(obs.getVitesse().getX() < 25){
+								obs.setVitesse(new VecteurModele(0,0));
+							}else{
+								obs.setVitesse(new VecteurModele(obs.getVitesse().getX()/2,-obs.getVitesse().getY()/2));
+							}
+							obs.deplace(obs,sol,listOb);
+						}
+						else if(Calcul.testContactObOb(obs,listOb)){
+							if(obs.getVitesse().getX() < 25){
+								obs.setVitesse(new VecteurModele(0,0));
+							}else{
+								obs.setVitesse(new VecteurModele(obs.getVitesse().getX()/2,-obs.getVitesse().getY()/2));
+							}
+							obs.deplace(obs,sol,listOb);
+						}
+							
+						obs.deplace(obs,sol,listOb);
+						
+						
 						setChanged ();
 						notifyObservers ();
 					}
@@ -146,8 +162,8 @@ public class AngryBirdModele extends Observable {
 		return b;
 	}
 
-	public ArrayList<ObstacleModele> getOb() {
-		return ob;
+	public ArrayList<ObstacleModele> getListOb() {
+		return listOb;
 	}
 	
 	public SolModele getSol(){

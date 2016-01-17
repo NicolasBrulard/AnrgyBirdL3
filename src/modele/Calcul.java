@@ -64,9 +64,9 @@ public class Calcul {
 
 	
 	public static boolean testContactObstacle(AngryBirdModele model){ //Renvoi vrai si la distance avec le plus proche obstacle est inferieur a la somme des deux rayons
-		if(Calcul.calculDistance(model.getB().getCoord(), Calcul.chercherObsProche(model.getB(),model.getOb()).getCoord())< Calcul.chercherObsProche(model.getB(),model.getOb()).getRayon()+model.getB().getRayon()){
+		if(Calcul.calculDistance(model.getB().getCoord(), Calcul.chercherObsProche(model.getB(),model.getListOb()).getCoord())< Calcul.chercherObsProche(model.getB(),model.getListOb()).getRayon()+model.getB().getRayon()){
 
-			Calcul.chercherObsProche(model.getB(),model.getOb()).setColor(Color.BLUE);
+			Calcul.chercherObsProche(model.getB(),model.getListOb()).setColor(Color.BLUE);
 			//Calcul.chercherObsProche(bird.getB(),bird.getOb()).setAngle(180);
 
 			return true;
@@ -86,6 +86,22 @@ public class Calcul {
 		
 		if((ob.getY()+ob.getRayon()) > sol.getY()){
 			ob.setColor(Color.CYAN);
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * This function tests if the Bird hits the ground
+	 * @param BirdModele
+	 * @param SolModele
+	 * @return true or false, depending on if there's a collision
+	 */
+
+	
+	public static boolean testContactBirdSol(BirdModele bird, SolModele sol){
+		
+		if((bird.getY()+bird.getRayon()) >= sol.getY()){
 			return true;
 		}
 		return false;
@@ -123,7 +139,8 @@ public class Calcul {
 	
 	/**
 	 * This function tests if the Obstacle hits another Obstacle
-	 * @param Bird
+	 * @param ObstacleModel
+	 * @param ArrayList<ObstacleModele>
 	 * @return true or false, depending on if there's a collision
 	 */
 
@@ -139,7 +156,25 @@ public class Calcul {
 		return false;
 
 	}
-		
+	
+	
+	/**
+	 * This function tests if the Obstacle go really slow
+	 * @param ObstacleModel
+	 * @param ArrayList<ObstacleModele>
+	 * @return true or false, depending on if the obstacle go slow or not
+	 */
+
+	
+	public static boolean testObLent(ObstacleModele obstacle) {
+		if (obstacle.getVitesse().equals(new VecteurModele(0,0))) {
+
+			return true;
+		}
+
+		return false;
+
+	}
 	
 	
 	/**
@@ -150,7 +185,7 @@ public class Calcul {
 	 */
 	public static boolean testContactFenetre(AngryBirdModele bird){
 		
-		if((bird.getB().getX()+Constantes.rayonBird>=bird.getFenetreX()-Constantes.decalageFenetreXDroite || bird.getB().getY()+Constantes.rayonBird*2+Constantes.decalageFenetreYBas>=bird.getFenetreY()-40)){ //dernier if moche
+		if((bird.getB().getX()+Constantes.rayonBird>=bird.getFenetreX()-Constantes.decalageFenetreXDroite)){ //dernier if moche
 			return true;
 		}
 		return false;

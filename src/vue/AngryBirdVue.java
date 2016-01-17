@@ -82,7 +82,7 @@ public class AngryBirdVue extends JPanel implements Observer/*
 			this.dessineFond(g);
 			g.drawImage(btn, 0, 0, null);
 			this.dessineBird(g, this.model.getB());
-			this.dessineObstacles(g, model.getOb());
+			this.dessineObstacles(g, model.getListOb());
 			this.dessineSol(g, model.getSol());
 			this.dessineCentre(g);
 			if (model.getB().getCentre().size() < 1) {

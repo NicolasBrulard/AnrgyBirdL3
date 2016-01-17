@@ -39,34 +39,10 @@ public class ObstacleModele extends Observable {
 	}
 	
 	public void deplace(ObstacleModele obs, SolModele sol, ArrayList<ObstacleModele> ob){
-		if (Calcul.testContactObSol(obs,sol)) {
-			if(obs.getVitesse().getX() < 2 && obs.getVitesse().getX() < 2){
-				this.setVitesse(new VecteurModele(0,0));
-			}else{
-				this.setVitesse(new VecteurModele(obs.getVitesse().getX()/2,-obs.getVitesse().getY()/2));
-			}
-			this.getVitesse().setX(this.getVitesse().getX()+this.acceleration.getX()*(this.masse/50));
-			this.getVitesse().setY(this.getVitesse().getY()+this.acceleration.getY()*(this.masse/50));
-			this.setX((int)(this.getX()+this.getVitesse().getX()/53));
-			this.setY((int)(this.getY()+this.getVitesse().getY()/53));
-		}
-		else if(Calcul.testContactObOb(obs,ob)){
-			if(obs.getVitesse().getX() < 2 && obs.getVitesse().getX() < 2){
-				this.setVitesse(new VecteurModele(0,0));
-			}else{
-				this.setVitesse(new VecteurModele(obs.getVitesse().getX()/2,-obs.getVitesse().getY()/2));
-			}
-			this.getVitesse().setX(this.getVitesse().getX()+this.acceleration.getX()*(this.masse/50));
-			this.getVitesse().setY(this.getVitesse().getY()+this.acceleration.getY()*(this.masse/50));
-			this.setX((int)(this.getX()+this.getVitesse().getX()/53));
-			this.setY((int)(this.getY()+this.getVitesse().getY()/53));
-		}
-		else{
-			this.getVitesse().setX(this.getVitesse().getX()+this.acceleration.getX()*(this.masse/50));
-			this.getVitesse().setY(this.getVitesse().getY()+this.acceleration.getY()*(this.masse/50));
-			this.setX((int)(this.getX()+this.getVitesse().getX()/53));
-			this.setY((int)(this.getY()+this.getVitesse().getY()/53));
-		}
+		this.getVitesse().setX(this.getVitesse().getX()+this.acceleration.getX()*(this.masse/50));
+		this.getVitesse().setY(this.getVitesse().getY()+this.acceleration.getY()*(this.masse/50));
+		this.setX((int)(this.getX()+this.getVitesse().getX()/53));
+		this.setY((int)(this.getY()+this.getVitesse().getY()/53));
 	}
 	
 	public VecteurModele getVitesse() {
