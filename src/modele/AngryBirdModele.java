@@ -60,31 +60,32 @@ public class AngryBirdModele extends Observable {
 		listOb = new ArrayList<>();
 		for(int i = 1;i<=Constantes.nbOb;i++){
 			if(i<Constantes.nbOb)
-				listOb.add(new ObstacleModele(this.fenetreX-150,i*100,"o",new VecteurModele(0, 0)));
+				listOb.add(new ObstacleModele(this.fenetreX-150,i*100,"o",new VecteurModele(0, 0),2));
 			else
-				listOb.add(new ObstacleModele(this.fenetreX-150,i*100,"r",new VecteurModele(0, 0)));	
+				listOb.add(new ObstacleModele(this.fenetreX-150,i*100,"r",new VecteurModele(0, 0),3));	
 		}
 		
-		listOb.add(new ObstacleModele(this.fenetreX-350,200,"r",new VecteurModele(0, 0)));
-		listOb.add(new ObstacleModele(this.fenetreX-350,400,"r",new VecteurModele(0, 0)));
+		listOb.add(new ObstacleModele(this.fenetreX-350,200,"r",new VecteurModele(0, 0),3));
+		listOb.add(new ObstacleModele(this.fenetreX-350,400,"r",new VecteurModele(0, 0),3));
 	}
 
 	/**
 	 * Makes the bird move according to whether or not it can
 	 */
 	public void deplace(){
-		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this) && !Calcul.testContactBirdSol(this.getB(), this.getSol())){
+		if(!Calcul.testContactBirdObstacle(this) && !Calcul.testContactFenetre(this) && !Calcul.testContactBirdSol(this.getB(), this.getSol())){
 			this.getB().deplace();
 		}
-		else if(Calcul.testContactObstacle(this)){
+		else if(Calcul.testContactBirdObstacle(this)){
 			Calcul.chercherObsProche(this.getB(),this.getListOb()).setVitesse(this.getB().getVitesse());
 			Calcul.chercherObsProche(this.getB(),this.getListOb()).setAcceleration(this.getB().getAcceleration());
 			this.getB().setVitesse(new VecteurModele(-this.getB().getVitesse().getX(),this.getB().getVitesse().getX()));
+			Calcul.chercherObsProche(this.getB(),this.getListOb()).perdVie();
 		}
 		else if(Calcul.testContactBirdSol(this.getB(), this.getSol())){
-			//System.out.println("Vx = " + this.getB().getVitesse().getX());
-			//System.out.println("Vy = " + this.getB().getVitesse().getY());
-			this.getB().setVitesse(new VecteurModele(this.getB().getVitesse().getX()/2,-this.getB().getVitesse().getY()/2));
+			System.out.println("Vx = " + this.getB().getVitesse().getX());
+			System.out.println("Vy = " + this.getB().getVitesse().getY());
+			this.getB().setVitesse(new VecteurModele(this.getB().getVitesse().getX(),-this.getB().getVitesse().getY()));
 		}
 		else{
 			
@@ -109,6 +110,11 @@ public class AngryBirdModele extends Observable {
 				ActionListener a = new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						
+						if(obs.getVie()<=0){
+							obs.setX(1000);
+							obs.setY(1000);
+						}
 						
 						
 						if (Calcul.testContactObSol(obs,sol)) {
@@ -148,7 +154,7 @@ public class AngryBirdModele extends Observable {
 	 */
 	public void go(){
 		ActionListener a = new ActionListener() {
-
+				
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				b.getCentre().add(new VecteurModele(b.getX(), b.getY()));

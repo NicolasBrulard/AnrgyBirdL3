@@ -63,7 +63,7 @@ public class Calcul {
 	 */
 
 	
-	public static boolean testContactObstacle(AngryBirdModele model){ //Renvoi vrai si la distance avec le plus proche obstacle est inferieur a la somme des deux rayons
+	public static boolean testContactBirdObstacle(AngryBirdModele model){ //Renvoi vrai si la distance avec le plus proche obstacle est inferieur a la somme des deux rayons
 		if(Calcul.calculDistance(model.getB().getCoord(), Calcul.chercherObsProche(model.getB(),model.getListOb()).getCoord())< Calcul.chercherObsProche(model.getB(),model.getListOb()).getRayon()+model.getB().getRayon()){
 
 			Calcul.chercherObsProche(model.getB(),model.getListOb()).setColor(Color.BLUE);
@@ -101,7 +101,9 @@ public class Calcul {
 	
 	public static boolean testContactBirdSol(BirdModele bird, SolModele sol){
 		
-		if((bird.getY()+bird.getRayon()) >= sol.getY()){
+		if((bird.getY()+bird.getRayon()) > sol.getY()){
+			bird.setY(bird.getY()-10);
+			bird.setX(bird.getX());
 			return true;
 		}
 		return false;

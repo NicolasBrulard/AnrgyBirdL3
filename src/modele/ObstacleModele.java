@@ -14,6 +14,7 @@ public class ObstacleModele extends Observable {
 	private String f;
 	private VecteurModele vitesse;
 	private VecteurModele acceleration = new VecteurModele(0, -Constantes.g);
+	private int vie;
 
 	public VecteurModele getAcceleration() {
 		return acceleration;
@@ -31,11 +32,12 @@ public class ObstacleModele extends Observable {
 		this.acceleration = acceleration;
 	}
 
-	public ObstacleModele(int x,int y, String f, VecteurModele vitesse) {
+	public ObstacleModele(int x,int y, String f, VecteurModele vitesse, int vie) {
 		coord.setX(x);
 		coord.setY(y);
 		this.f =f ;
 		this.vitesse = vitesse;
+		this.vie = vie;
 	}
 	
 	public void deplace(ObstacleModele obs, SolModele sol, ArrayList<ObstacleModele> ob){
@@ -103,6 +105,22 @@ public class ObstacleModele extends Observable {
 		this.coord.setY(y);
 		setChanged ();
 		notifyObservers ();
+	}
+	
+	public void setVie(int vie) {
+		this.vie = vie;
+		setChanged ();
+		notifyObservers ();
+	}
+	
+	public void perdVie() {
+		this.vie = this.vie-1;
+		setChanged ();
+		notifyObservers ();
+	}
+	
+	public int getVie() {
+		return this.vie;
 	}
 	
 	public CoordonneesModele getCoord() {

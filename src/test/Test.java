@@ -22,7 +22,7 @@ public class Test {
 	public void testCalculDistance() { // Calcul de distance OK !
 		BirdModele bird = new BirdModele();
 		bird.setCoord(new CoordonneesModele(50, 55));
-		assertEquals(5.0, Calcul.calculDistance(bird.getCoord(), new ObstacleModele(55, 55,"o",new VecteurModele(5, 5)).getCoord()),0.01); 	
+		assertEquals(5.0, Calcul.calculDistance(bird.getCoord(), new ObstacleModele(55, 55,"o",new VecteurModele(5, 5),2).getCoord()),0.01); 	
 
 	}
 }
