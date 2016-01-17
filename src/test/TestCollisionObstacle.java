@@ -21,21 +21,21 @@ public class TestCollisionObstacle {
 	public void testCollisionObstacleInterieur(){	
 		AngryBirdModele angry = new AngryBirdModele();
 		angry.getB().setCoord(new CoordonneesModele(angry.getFenetreX()-135, 100));
-		assertTrue(Calcul.testContactObstacle(angry));
+		assertTrue(Calcul.testContactBirdObstacle(angry));
 	}
 	
 	@Test
 	public void testCollisionObstacleContact(){
 		AngryBirdModele angry = new AngryBirdModele();
 		angry.getB().setCoord(new CoordonneesModele(angry.getFenetreX()-175, 100));
-		assertTrue(Calcul.testContactObstacle(angry));
+		assertTrue(Calcul.testContactBirdObstacle(angry));
 	}
 	
 	@Test
 	public void testNoCollision(){
 		AngryBirdModele angry = new AngryBirdModele();
 		angry.getB().setCoord(new CoordonneesModele(500, 100));
-		assertTrue(!Calcul.testContactObstacle(angry));
+		assertTrue(!Calcul.testContactBirdObstacle(angry));
 	}
 	
 
