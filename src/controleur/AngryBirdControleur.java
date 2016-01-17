@@ -61,7 +61,6 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 			this.m.setRotate(!this.m.getRotate());
 		}
 	}
-	
 	@Override
 	/**
 	 * Drop part : set the initial starting point of the bird

@@ -62,13 +62,13 @@ public class AngryBirdVue extends JPanel implements Observer/*
 		model.deplaceOB();
 		try {
 			demonBird = ImageIO
-					.read(new File("AnrgyBirdL3/src/images/demonbirdlittle.png"));
-			background01 = ImageIO.read(new File("AnrgyBirdL3/src/images/background.png"));
-			background02 = ImageIO.read(new File("AnrgyBirdL3/src/images/background02.png"));
+					.read(new File("src/images/demonbirdlittle.png"));
+			background01 = ImageIO.read(new File("src/images/background.png"));
+			background02 = ImageIO.read(new File("src/images/background02.png"));
 			// obsRond = ImageIO.read(new File("src/images/obsrond.png"));
 			// obsCarre = ImageIO.read(new File("src/images/obscarre.png"));
-			btn = ImageIO.read(new File("AnrgyBirdL3/src/images/btn.png"));
-			btnBG = ImageIO.read(new File("AnrgyBirdL3/src/images/btnBG.png"));
+			btn = ImageIO.read(new File("src/images/btn.png"));
+			btnBG = ImageIO.read(new File("src/images/btnBG.png"));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
@@ -97,7 +97,7 @@ public class AngryBirdVue extends JPanel implements Observer/*
 			} else {
 				this.dessineBec(g, this.model.getB());
 			}
-			g.drawString("test rotate", Constantes.fenetreX-200, 0); // fais comme tes images
+			g.drawString("test rotate", Constantes.fenetreX-200, 0);
 
 			repaint();
 		
@@ -137,19 +137,11 @@ public class AngryBirdVue extends JPanel implements Observer/*
 	public void dessineBird(Graphics g, BirdModele bird) {
 		g.setColor(bird.getColor());
 		if (this.model.getGraph().getGraph() == 1 || this.model.getGraph().getGraph() == 2) {
-
-			g.drawImage(demonBird, bird.getX() - bird.getRayon() - 10,
-			 bird.getY() - bird.getRayon() - 9, null);
-			//Graphics2D g2d = (Graphics2D) g;
-
-
-			//g.drawImage(demonBird, bird.getX() - bird.getRayon() - 10,
+//<<<<<<< Updated upstream
+			// g.drawImage(demonBird, bird.getX() - bird.getRayon() - 10,
 			// bird.getY() - bird.getRayon() - 9, null);
 			if(this.model.getRotate()){
 			Graphics2D g2d = (Graphics2D) g;
-			/*Graphics2D g2d = (Graphics2D) g;
-
->>>>>>> 8f43695ca1bd1117c4f0da2ee329bce9f019ca87
 			AffineTransform at = g2d.getTransform();
 			at.translate(model.getB().getX(), model.getB().getY());
 			at.rotate(-Math.toDegrees(Math.atan2(model.getB().getY()
@@ -164,27 +156,26 @@ public class AngryBirdVue extends JPanel implements Observer/*
 			/*if (this.model.getGraph().getGraph() == 1 || this.model.getGraph().getGraph() == 2) {
 			//g.drawImage(demonBird, bird.getX() - bird.getRayon() - 10,
 				//	bird.getY() - bird.getRayon() - 9, null);
+=======
 			g.drawImage(demonBird, bird.getX() - bird.getRayon() - 10,
 					bird.getY() - bird.getRayon() - 9, null);
-
+>>>>>>> Stashed changes
 			Graphics2D g2d = (Graphics2D) g;
 			AffineTransform at = new AffineTransform();
 			//at.setToTranslation(model.getB().getX(), model.getB().getY());
 			//System.out.println(Math.toDegrees(Math.atan2(model.getB().getY()-model.getB().getVitesse().getY(), model.getB().getX()-model.getB().getVitesse().getX())));
 			//at.rotate(Math.toDegrees(Math.atan2(model.getB().getVitesse().getY()-model.getB().getY(), model.getB().getVitesse().getX()-model.getB().getX())));
 		//	at.translate(-(model.getB().getX()), -(model.getB().getY()));
-
+<<<<<<< Updated upstream
 			g2d.drawImage(demonBird, at, this);*/
-
+//=======
 			//g2d.drawImage(demonBird, at, this);
-
-			//g2d.drawImage(demonBird, at, null);
-
+			
+//>>>>>>> Stashed changes
 		} else {
 			g.drawOval(bird.getX() - bird.getRayon(),
 					bird.getY() - bird.getRayon(), bird.getRayon() * 2,
 					bird.getRayon() * 2);
-		}
 		}
 
 		g.drawString("" + bird.getNb(), 50, 125);
