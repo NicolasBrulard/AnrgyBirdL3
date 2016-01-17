@@ -137,17 +137,15 @@ public class AngryBirdVue extends JPanel implements Observer/*
 	public void dessineBird(Graphics g, BirdModele bird) {
 		g.setColor(bird.getColor());
 		if (this.model.getGraph().getGraph()) {
-			//g.drawImage(demonBird, bird.getX() - bird.getRayon() - 10,
-				//	bird.getY() - bird.getRayon() - 9, null);
+			// g.drawImage(demonBird, bird.getX() - bird.getRayon() - 10,
+			// bird.getY() - bird.getRayon() - 9, null);
 			Graphics2D g2d = (Graphics2D) g;
-			AffineTransform at = new AffineTransform();
-			at.setToTranslation(model.getB().getX(), model.getB().getY());
-			System.out.println(Math.toDegrees(Math.atan2(model.getB().getY()-model.getB().getVitesse().getY(), model.getB().getX()-model.getB().getVitesse().getX())));
-			at.rotate(Math.toDegrees(Math.atan2(model.getB().getVitesse().getY()-model.getB().getY(), model.getB().getVitesse().getX()-model.getB().getX())));
-		//	at.translate(-(model.getB().getX()), -(model.getB().getY()));
-			// g2d.drawImage(demonBird, at, this);
-			g2d.drawImage(demonBird, at, this);
-			
+			AffineTransform at = g2d.getTransform();
+			at.translate(model.getB().getX(), model.getB().getY());
+			at.rotate(-Math.toDegrees(Math.atan2(model.getB().getY()
+					/ 2*Constantes.YBirdDebut, model.getB().getX()
+					/ 2*Constantes.xBirdDebut)),20,10);
+			g2d.drawImage(demonBird, at, null);
 		} else {
 			g.drawOval(bird.getX() - bird.getRayon(),
 					bird.getY() - bird.getRayon(), bird.getRayon() * 2,
@@ -159,7 +157,7 @@ public class AngryBirdVue extends JPanel implements Observer/*
 		// g.drawImage(demonBird,bird.getX()-bird.getRayon()-10,bird.getY()-bird.getRayon()-9,null);
 	}
 
-	public void rotation(int angle) {
+/*	public void rotation(int angle) {
 		BufferedImage image = null;
 		JFileChooser choix = new JFileChooser();
 		image = new BufferedImage(demonBird.getWidth(null),
@@ -172,7 +170,7 @@ public class AngryBirdVue extends JPanel implements Observer/*
 		AffineTransformOp op = new AffineTransformOp(transformer,
 				AffineTransformOp.TYPE_BILINEAR);
 		image = op.filter(image, null);
-	}
+	}*/
 
 	/**
 	 * Draws the bird mouth according to its movement (angle, direction)
