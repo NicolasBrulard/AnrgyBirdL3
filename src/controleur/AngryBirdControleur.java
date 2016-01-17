@@ -58,6 +58,7 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 			}
 		}
 	}
+	
 	@Override
 	/**
 	 * Drop part : set the initial starting point of the bird
