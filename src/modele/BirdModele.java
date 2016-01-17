@@ -68,6 +68,10 @@ public class BirdModele extends Observable {
 		return acceleration;
 	}
 	
+	public void setAcceleration(VecteurModele accel) {
+		this.acceleration = accel;
+	}
+	
 	public void setVitesse(VecteurModele vitesse) {
 		this.vitesse = vitesse;
 		setChanged ();

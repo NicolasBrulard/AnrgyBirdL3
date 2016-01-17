@@ -102,8 +102,6 @@ public class Calcul {
 	public static boolean testContactBirdSol(BirdModele bird, SolModele sol){
 		
 		if((bird.getY()+bird.getRayon()) > sol.getY()){
-			bird.setY(bird.getY()-10);
-			bird.setX(bird.getX());
 			return true;
 		}
 		return false;

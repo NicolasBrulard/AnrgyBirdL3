@@ -83,9 +83,9 @@ public class AngryBirdModele extends Observable {
 			Calcul.chercherObsProche(this.getB(),this.getListOb()).perdVie();
 		}
 		else if(Calcul.testContactBirdSol(this.getB(), this.getSol())){
-			System.out.println("Vx = " + this.getB().getVitesse().getX());
-			System.out.println("Vy = " + this.getB().getVitesse().getY());
-			this.getB().setVitesse(new VecteurModele(this.getB().getVitesse().getX(),-this.getB().getVitesse().getY()));
+			this.getB().setY(this.getB().getY()-5);
+			this.getB().setX(this.getB().getX());
+			this.getB().setVitesse(new VecteurModele(this.getB().getVitesse().getX()/2,-this.getB().getVitesse().getY()/2));
 		}
 		else{
 			
@@ -123,6 +123,8 @@ public class AngryBirdModele extends Observable {
 							}else{
 								obs.setVitesse(new VecteurModele(obs.getVitesse().getX()/2,-obs.getVitesse().getY()/2));
 							}
+							obs.setY(obs.getY()-2);
+							obs.setX(obs.getX());
 							obs.deplace(obs,sol,listOb);
 						}
 						else if(Calcul.testContactObOb(obs,listOb)){
