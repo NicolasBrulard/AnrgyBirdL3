@@ -93,7 +93,12 @@ public class AngryBirdModele extends Observable {
 			this.getB().init();
 			timer.stop();
 		}
-	}
+		if(this.getB().getVitesse().getX()>-20 && this.getB().getVitesse().getX()<20 && this.getB().getVitesse().getY()>-20 && this.getB().getVitesse().getX()<20){
+			this.initB();
+			this.getB().init();
+			timer.stop();
+		}
+				}
 	/*
 	public void stopOB(){
 		if(Calcul.testContactSol){
