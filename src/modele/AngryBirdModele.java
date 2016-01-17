@@ -118,7 +118,9 @@ public class AngryBirdModele extends Observable {
 						
 						
 						if (Calcul.testContactObSol(obs,sol)) {
-							if(obs.getVitesse().getX() < 25){
+							System.out.println("sol : " + obs.getVitesse().getY());
+							if(obs.getVitesse().getY() < 120){
+								System.out.println("ok");
 								obs.setVitesse(new VecteurModele(0,0));
 							}else{
 								obs.setVitesse(new VecteurModele(obs.getVitesse().getX()/2,-obs.getVitesse().getY()/2));
@@ -128,7 +130,7 @@ public class AngryBirdModele extends Observable {
 							obs.deplace(obs,sol,listOb);
 						}
 						else if(Calcul.testContactObOb(obs,listOb)){
-							if(obs.getVitesse().getX() < 25){
+							if(obs.getVitesse().getY() < 70){
 								obs.setVitesse(new VecteurModele(0,0));
 							}else{
 								obs.setVitesse(new VecteurModele(obs.getVitesse().getX()/2,-obs.getVitesse().getY()/2));

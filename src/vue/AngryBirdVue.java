@@ -136,6 +136,7 @@ public class AngryBirdVue extends JPanel implements Observer/*
 	public void dessineBird(Graphics g, BirdModele bird) {
 		g.setColor(bird.getColor());
 		if (this.model.getGraph().getGraph() == 1 || this.model.getGraph().getGraph() == 2) {
+<<<<<<< Updated upstream
 			// g.drawImage(demonBird, bird.getX() - bird.getRayon() - 10,
 			// bird.getY() - bird.getRayon() - 9, null);
 			Graphics2D g2d = (Graphics2D) g;
@@ -148,13 +149,22 @@ public class AngryBirdVue extends JPanel implements Observer/*
 		/*if (this.model.getGraph().getGraph() == 1 || this.model.getGraph().getGraph() == 2) {
 			//g.drawImage(demonBird, bird.getX() - bird.getRayon() - 10,
 				//	bird.getY() - bird.getRayon() - 9, null);
+=======
+			g.drawImage(demonBird, bird.getX() - bird.getRayon() - 10,
+					bird.getY() - bird.getRayon() - 9, null);
+>>>>>>> Stashed changes
 			Graphics2D g2d = (Graphics2D) g;
 			AffineTransform at = new AffineTransform();
-			at.setToTranslation(model.getB().getX(), model.getB().getY());
+			//at.setToTranslation(model.getB().getX(), model.getB().getY());
 			//System.out.println(Math.toDegrees(Math.atan2(model.getB().getY()-model.getB().getVitesse().getY(), model.getB().getX()-model.getB().getVitesse().getX())));
-			at.rotate(Math.toDegrees(Math.atan2(model.getB().getVitesse().getY()-model.getB().getY(), model.getB().getVitesse().getX()-model.getB().getX())));
+			//at.rotate(Math.toDegrees(Math.atan2(model.getB().getVitesse().getY()-model.getB().getY(), model.getB().getVitesse().getX()-model.getB().getX())));
 		//	at.translate(-(model.getB().getX()), -(model.getB().getY()));
+<<<<<<< Updated upstream
 			g2d.drawImage(demonBird, at, this);*/
+=======
+			//g2d.drawImage(demonBird, at, this);
+			
+>>>>>>> Stashed changes
 		} else {
 			g.drawOval(bird.getX() - bird.getRayon(),
 					bird.getY() - bird.getRayon(), bird.getRayon() * 2,
