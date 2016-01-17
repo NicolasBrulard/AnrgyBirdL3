@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JOptionPane;
 
@@ -26,6 +28,7 @@ public class AngryBirdModele extends Observable {
 	public void setRotate(boolean rotate) {
 		this.rotate = rotate;
 	}
+	private Timer autoStopTimer = new Timer();
 
 	public AngryBirdModele() {
 		this.initB();
@@ -82,6 +85,7 @@ public class AngryBirdModele extends Observable {
 	 * Makes the bird move according to whether or not it can
 	 */
 	public void deplace(){
+		
 		if(!Calcul.testContactBirdObstacle(this) && !Calcul.testContactFenetre(this) && !Calcul.testContactBirdSol(this.getB(), this.getSol())){
 			this.getB().deplace();
 		}
@@ -100,6 +104,7 @@ public class AngryBirdModele extends Observable {
 			
 			this.initB();
 			this.getB().init();
+			
 			timer.stop();
 		}
 		if(this.getB().getVitesse().getX()>-20 && this.getB().getVitesse().getX()<20 && this.getB().getVitesse().getY()>-20 && this.getB().getVitesse().getX()<20){
@@ -132,10 +137,11 @@ public class AngryBirdModele extends Observable {
 						
 						
 						if (Calcul.testContactObSol(obs,sol)) {
-							System.out.println("sol : " + obs.getVitesse().getY());
-							if(obs.getVitesse().getY() < 120){
-								System.out.println("ok");
+							//System.out.println("sol : " + obs.getVitesse().getY());
+							if(obs.getVitesse().getY() < 150){
+								//System.out.println("ok");
 								obs.setVitesse(new VecteurModele(0,0));
+								obs.setAcceleration(new VecteurModele(0,0));
 							}else{
 								obs.setVitesse(new VecteurModele(obs.getVitesse().getX()/2,-obs.getVitesse().getY()/2));
 							}
@@ -165,7 +171,24 @@ public class AngryBirdModele extends Observable {
 		}
 	
 		
-	
+	/*
+	public void timerBird(){
+		TimerTask tTask = new TimerTask(){
+			int seconds = 5;
+			@Override
+			public void run() {
+				seconds--;
+				if(seconds == 0){
+					
+					cancel();
+				}
+			
+			}
+		};
+		autoStopTimer.schedule(tTask, 0,1000);
+		
+	}
+	*/
 
 	/**
 	 * Launches the whole game, with a timer system.
@@ -175,6 +198,7 @@ public class AngryBirdModele extends Observable {
 				
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				b.getCentre().add(new VecteurModele(b.getX(), b.getY()));
 				deplace();
 				//deplaceOB();
