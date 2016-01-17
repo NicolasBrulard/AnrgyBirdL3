@@ -73,13 +73,18 @@ public class AngryBirdModele extends Observable {
 	 * Makes the bird move according to whether or not it can
 	 */
 	public void deplace(){
-		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this)){
+		if(!Calcul.testContactObstacle(this) && !Calcul.testContactFenetre(this) && !Calcul.testContactBirdSol(this.getB(), this.getSol())){
 			this.getB().deplace();
 		}
 		else if(Calcul.testContactObstacle(this)){
 			Calcul.chercherObsProche(this.getB(),this.getListOb()).setVitesse(this.getB().getVitesse());
 			Calcul.chercherObsProche(this.getB(),this.getListOb()).setAcceleration(this.getB().getAcceleration());
 			this.getB().setVitesse(new VecteurModele(-this.getB().getVitesse().getX(),this.getB().getVitesse().getX()));
+		}
+		else if(Calcul.testContactBirdSol(this.getB(), this.getSol())){
+			//System.out.println("Vx = " + this.getB().getVitesse().getX());
+			//System.out.println("Vy = " + this.getB().getVitesse().getY());
+			this.getB().setVitesse(new VecteurModele(this.getB().getVitesse().getX()/2,-this.getB().getVitesse().getY()/2));
 		}
 		else{
 			

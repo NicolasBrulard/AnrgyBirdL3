@@ -20,7 +20,7 @@ public class TestSuperpositionObs {
 	public void testSuperposeExact() {
 		AngryBirdModele angry = new AngryBirdModele();
 		angry.getB().setCoord(new CoordonneesModele(angry.getFenetreX()-150, 100));
-		assertTrue(Calcul.calculDistance(angry.getB().getCoord(), angry.getOb().get(0).getCoord())==0);
+		assertTrue(Calcul.calculDistance(angry.getB().getCoord(), angry.getListOb().get(0).getCoord())==0);
 	}
 	
 }

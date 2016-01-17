@@ -3,6 +3,7 @@ package vue;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -37,10 +38,12 @@ public class AngryBirdVue extends JPanel implements Observer/*
 	// JButton btn = new JButton("graphisme");
 
 	private BufferedImage demonBird;
-	private BufferedImage background;
+	private BufferedImage background01;
+	private BufferedImage background02;
 	private BufferedImage obsRond;
 	private BufferedImage obsCarre;
 	private BufferedImage btn;
+	private BufferedImage btnBG;
 
 	public AngryBirdVue(FenetreContener fenetre, AngryBirdControleur control,
 			AngryBirdModele model) {
@@ -60,10 +63,12 @@ public class AngryBirdVue extends JPanel implements Observer/*
 		try {
 			demonBird = ImageIO
 					.read(new File("src/images/demonbirdlittle.png"));
-			background = ImageIO.read(new File("src/images/background.png"));
+			background01 = ImageIO.read(new File("src/images/background.png"));
+			background02 = ImageIO.read(new File("src/images/background02.png"));
 			// obsRond = ImageIO.read(new File("src/images/obsrond.png"));
 			// obsCarre = ImageIO.read(new File("src/images/obscarre.png"));
 			btn = ImageIO.read(new File("src/images/btn.png"));
+			btnBG = ImageIO.read(new File("src/images/btnBG.png"));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
@@ -79,8 +84,11 @@ public class AngryBirdVue extends JPanel implements Observer/*
 	public void paint(Graphics g) {
 		
 			g.clearRect(0, 0, model.getFenetreX(), model.getFenetreY());
+			
 			this.dessineFond(g);
+			
 			g.drawImage(btn, 0, 0, null);
+			g.drawImage(btnBG, Constantes.fenetreX-100, 0, null);
 			this.dessineBird(g, this.model.getB());
 			this.dessineObstacles(g, model.getListOb());
 			this.dessineSol(g, model.getSol());
@@ -111,9 +119,12 @@ public class AngryBirdVue extends JPanel implements Observer/*
 	 * @param g
 	 */
 	public void dessineFond(Graphics g) {
-		if (this.model.getGraph().getGraph()) {
-			g.drawImage(background, 0, 0, null);
+		if (this.model.getGraph().getGraph()==1) {
+			g.drawImage(background01, 0, 0, null);
+		}else if(this.model.getGraph().getGraph()==2){
+			g.drawImage(background02, 0, 0, null);
 		}
+		
 	}
 
 	/**
@@ -124,13 +135,13 @@ public class AngryBirdVue extends JPanel implements Observer/*
 	 */
 	public void dessineBird(Graphics g, BirdModele bird) {
 		g.setColor(bird.getColor());
-		if (this.model.getGraph().getGraph()) {
+		if (this.model.getGraph().getGraph() == 1 || this.model.getGraph().getGraph() == 2) {
 			//g.drawImage(demonBird, bird.getX() - bird.getRayon() - 10,
 				//	bird.getY() - bird.getRayon() - 9, null);
 			Graphics2D g2d = (Graphics2D) g;
 			AffineTransform at = new AffineTransform();
 			at.setToTranslation(model.getB().getX(), model.getB().getY());
-			System.out.println(Math.toDegrees(Math.atan2(model.getB().getY()-model.getB().getVitesse().getY(), model.getB().getX()-model.getB().getVitesse().getX())));
+			//System.out.println(Math.toDegrees(Math.atan2(model.getB().getY()-model.getB().getVitesse().getY(), model.getB().getX()-model.getB().getVitesse().getX())));
 			at.rotate(Math.toDegrees(Math.atan2(model.getB().getVitesse().getY()-model.getB().getY(), model.getB().getVitesse().getX()-model.getB().getX())));
 		//	at.translate(-(model.getB().getX()), -(model.getB().getY()));
 			g2d.drawImage(demonBird, at, this);
@@ -183,7 +194,7 @@ public class AngryBirdVue extends JPanel implements Observer/*
 		for (ObstacleModele ob : obs) {
 
 			if (ob.getF().equals("o")) {
-				if (this.model.getGraph().getGraph()) {
+				if (this.model.getGraph().getGraph() == 1 || this.model.getGraph().getGraph() == 2) {
 					g.setColor(Color.BLACK);
 					g.fillOval(ob.getX() - ob.getRayon(),
 							ob.getY() - ob.getRayon(), ob.getRayon() * 2,
@@ -202,7 +213,7 @@ public class AngryBirdVue extends JPanel implements Observer/*
 				}
 
 			} else {
-				if (this.model.getGraph().getGraph()) {
+				if (this.model.getGraph().getGraph() == 1 || this.model.getGraph().getGraph() == 2) {
 					g.setColor(Color.BLACK);
 					g.fillRect(ob.getX() - ob.getRayon(),
 							ob.getY() - ob.getRayon(), ob.getRayon() * 2,

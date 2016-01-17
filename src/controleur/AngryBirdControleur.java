@@ -44,7 +44,14 @@ public class AngryBirdControleur implements MouseListener,MouseMotionListener{
 			this.m.getB().getVitesse().setY(this.m.getB().getY());
 		}
 		if(e.getX()>0 && e.getX()<100 &&e.getY()>0 && e.getY()<50){
-			this.m.getGraph().setGraph(!this.m.getGraph().getGraph());
+			this.m.getGraph().setGraph(3);
+		}
+		if(e.getX()>Constantes.fenetreX-100 && e.getX()<Constantes.fenetreX &&e.getY()>0 && e.getY()<50){
+			if(this.m.getGraph().getGraph() == 2){
+				this.m.getGraph().setGraph(1);
+			}else{
+				this.m.getGraph().setGraph(2);
+			}
 		}
 	}
 	@Override
