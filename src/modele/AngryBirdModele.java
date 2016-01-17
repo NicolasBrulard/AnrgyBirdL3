@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import javax.swing.JOptionPane;
+
 public class AngryBirdModele extends Observable {
 
 	private BirdModele b = new BirdModele();
@@ -37,6 +39,14 @@ public class AngryBirdModele extends Observable {
 		b.setCoord(new CoordonneesModele(150, Constantes.fenetreY-200));
 		b.setVitesse(new VecteurModele(0, 0));
 		b.setNb(b.getNb()+1);
+		if (this.getB().getNb() >= 10) {
+			JOptionPane jop = new JOptionPane();
+			jop.showMessageDialog(
+					null,
+					"10 lancers ont ete effectues. L'application va se fermer.",
+					"Alert", JOptionPane.WARNING_MESSAGE, null);
+			System.exit(1);
+		}
 	}
 	
 	public void initSol(){

@@ -77,7 +77,7 @@ public class AngryBirdVue extends JPanel implements Observer/*
 	 * @param g
 	 */
 	public void paint(Graphics g) {
-		if (this.model.getB().getNb() < 10) {
+		
 			g.clearRect(0, 0, model.getFenetreX(), model.getFenetreY());
 			this.dessineFond(g);
 			g.drawImage(btn, 0, 0, null);
@@ -91,19 +91,7 @@ public class AngryBirdVue extends JPanel implements Observer/*
 				this.dessineBec(g, this.model.getB());
 			}
 			repaint();
-		} else {
-			JOptionPane jop = new JOptionPane();
-			jop.showMessageDialog(
-					null,
-					"10 lancers ont ete effectues. L'application va se fermer.",
-					"Alert", JOptionPane.WARNING_MESSAGE, null);
-			System.exit(1);
-			/*
-			 * if(option == JOptionPane.OK_OPTION){
-			 * 
-			 * }
-			 */
-		}
+		
 	}
 
 	/**
@@ -145,7 +133,6 @@ public class AngryBirdVue extends JPanel implements Observer/*
 			System.out.println(Math.toDegrees(Math.atan2(model.getB().getY()-model.getB().getVitesse().getY(), model.getB().getX()-model.getB().getVitesse().getX())));
 			at.rotate(Math.toDegrees(Math.atan2(model.getB().getVitesse().getY()-model.getB().getY(), model.getB().getVitesse().getX()-model.getB().getX())));
 		//	at.translate(-(model.getB().getX()), -(model.getB().getY()));
-			// g2d.drawImage(demonBird, at, this);
 			g2d.drawImage(demonBird, at, this);
 			
 		} else {
