@@ -180,12 +180,11 @@ public class Calcul {
 	/**
 	 * This function tests if the Bird hits the top of the window or not
 	 * @param Bird
-	 * @param Window
 	 * @return true or false, depending on if there's a collision
 	 */
 	public static boolean testContactFenetre(AngryBirdModele bird){
 		
-		if((bird.getB().getX()+Constantes.rayonBird>=bird.getFenetreX()-Constantes.decalageFenetreXDroite)){ //dernier if moche
+		if((bird.getB().getX()+Constantes.rayonBird>=bird.getFenetreX()-Constantes.decalageFenetreXDroite || bird.getB().getX()+Constantes.rayonBird<=0)){
 			return true;
 		}
 		return false;
